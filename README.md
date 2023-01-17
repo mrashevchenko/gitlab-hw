@@ -25,7 +25,7 @@
 ### Задание 1
 
 ```
-Add link
+https://github.com/mrashevchenko/gitlab-hw/commit/7491940daf28212189700cb05965843ae681c7cb
 ```
 
 `При необходимости прикрепитe сюда скриншоты
