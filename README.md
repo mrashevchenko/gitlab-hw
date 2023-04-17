@@ -2,7 +2,7 @@
 
 ### Задание 1
 
-![](https://raw.githubusercontent.com/mrashevchenko/hw82/main/img/task1configur.PNG)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/bfad88a26d634a94c005ec667a35a933e65b0667/img/hw91.PNG)
 ![](https://raw.githubusercontent.com/mrashevchenko/hw82/main/img/task1result.PNG)
 
 ---
