@@ -20,13 +20,23 @@ sudo systemctl restart zabbix-server apache2 # zabbix-agent
 sudo systemctl enable zabbix-server apache2 # zabbix-agent  
 
 ### Задание 2
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw92/img/hw92logsrv.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw92/img/hw9221.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw92/img/hw9222.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw92/img/hw9223.PNG?raw=true)
+
 wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-4+debian11_all.deb
 dpkg -i zabbix-release_6.0-4+debian11_all.deb
 sudo apt update
 sudo apt install zabbix-agent
 systemctl restart zabbix-agent
 systemctl enable zabbix-agent
+cd /etc/zabbix/
+nano zabbix_agentd.conf - правка сервера
+cd /var/log/zabbix/
+tail -f zabbix_agentd.log
+
+
+
 
 # Домашнее задание к занятию «Система мониторинга Zabbix»
 
