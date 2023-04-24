@@ -43,6 +43,6 @@ virtual_ipaddress {
 
 ```
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw10-01/img/hw1011.PNG?raw=true)
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw10-01/img/hw10112.PNG?raw=true)
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw10-01/img/hw10113.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw10-01/img/hw10112.PNG?raw=true)
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw10-01/img/hw10114.PNG?raw=true)
