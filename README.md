@@ -16,7 +16,7 @@
 
 Установите и запустите memcached.
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-07/img/hw110201.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-02/img/hw110201.PNG?raw=true)
 
 ---
 
@@ -24,7 +24,7 @@
 
 Запишите в memcached несколько ключей с любыми именами и значениями, для которых выставлен TTL 5. 
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-07/img/hw110202.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-02/img/hw110202.PNG?raw=true)
 
 ---
 
@@ -32,5 +32,5 @@
 
 Запишите в Redis несколько ключей с любыми именами и значениями. 
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-07/img/hw110203.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-02/img/hw110203.PNG?raw=true)
 
