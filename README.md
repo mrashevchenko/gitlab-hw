@@ -7,11 +7,11 @@ CREATE TABLE (
 
   personal_id primary_key,
 
-  last_name_name varchar(50),
+  last_name_name VARCHAR(50),
 
-  first_name varchar(50),
+  first_name VARCHAR(50),
 
-  patronymic_name varchar(50),
+  patronymic_name VARCHAR(50),
 
   salary NUMERIC,
 
@@ -19,7 +19,7 @@ CREATE TABLE (
 
   spod_id NUMERIC,
 
-  date_of_hiring date,
+  date_of_hiring DATE,
 
   office_id VARCHAR(50),
 
