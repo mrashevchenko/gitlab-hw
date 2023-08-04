@@ -41,8 +41,7 @@ unzip sakila-db.zip
 cd sakila-db
 ```
 1.7. 
-```
-sql
+```sql
 mysql -u sys_temp -p
 show databases;
 create database SakilaDB;
