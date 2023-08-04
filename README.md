@@ -3,7 +3,7 @@
 ### Задание 1
 
 ```
-CREATE TABLE (
+CREATE TABLE personal(
 
   personal_id primary_key,
 
@@ -48,11 +48,11 @@ CREATE TABLE post (
 ```
 
 ```
-CREATE TABLE spod (
+CREATE TABLE division (
 
-  spod_id primary_key
+  division_id primary_key
 
-  spod_name varchar(50)
+  division_name varchar(50)
 
 )
 ```
@@ -68,17 +68,36 @@ CREATE TABLE date_of_hiring (
 ```
 
 ```
-CREATE TABLE office (
+CREATE TABLE addres (
 
-  office_id primary_key,
+  addres_id primary_key,
 
-  country VARCHAR(50),
+  addres varchar(100),
+
+  city_id integer,
   
-  city VARCHAR(50),
+  region_id integer,
   
-  street VARCHAR(50),
-  
-  building NUMERIC
+)
+```
+
+```
+CREATE TABLE region (
+
+  region_id primary_key,
+
+  region_nam VARCHAR(50)
+
+)
+```
+
+)
+```
+CREATE TABLE city (
+
+  city_id primary_key
+
+  city_name varchar(50)
 
 )
 ```
@@ -92,3 +111,6 @@ CREATE TABLE project (
 
 )
 ```
+
+
+
