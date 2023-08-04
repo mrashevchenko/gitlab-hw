@@ -5,33 +5,34 @@
 ```
 CREATE TABLE (
 
-personal_id primary_key,
+  personal_id primary_key,
 
-last_name_name varchar(50),
+  last_name_name varchar(50),
 
-first_name varchar(50),
+  first_name varchar(50),
 
-patronymic_name varchar(50),
+  patronymic_name varchar(50),
 
-salary NUMERIC,
+  salary NUMERIC,
 
-post_id NUMERIC,
+  post_id NUMERIC,
 
-spod_id NUMERIC,
+  spod_id NUMERIC,
 
-date_of_hiring date,
+  date_of_hiring date,
 
-office_id VARCHAR(50),
+  office_id VARCHAR(50),
 
-project_id NUMERIC,)
+  project_id NUMERIC
+)
 ```
 
 ```
-CREATE TABLE salary (
+  CREATE TABLE salary (
 
-salary_id primary_key
+  salary_id primary_key
 
-salary_name varchar(50)
+  salary_name varchar(50)
 
 )
 ```
@@ -39,9 +40,9 @@ salary_name varchar(50)
 ```
 CREATE TABLE post (
 
-post_id primary_key
+  post_id primary_key
 
-position_name varchar(50)
+  position_name varchar(50)
 
 )
 ```
@@ -49,9 +50,9 @@ position_name varchar(50)
 ```
 CREATE TABLE spod (
 
-spod_id primary_key
+  spod_id primary_key
 
-spod_name varchar(50)
+  spod_name varchar(50)
 
 )
 ```
