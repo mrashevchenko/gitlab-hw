@@ -60,7 +60,7 @@ CREATE TABLE spod (
 ```
 CREATE TABLE date_of_hiring (
 
-  ddate_of_hiring primary_key,
+  date_of_hiring primary_key,
 
   date DATE
 
