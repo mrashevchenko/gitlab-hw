@@ -11,7 +11,7 @@ sudo apt install -y mysql-server
 sudo systemctl status mysql.service
 ```
 1.2. 
-```sql
+```
 create user 'sys_temp'@'%' identified by '123456789';
 ```
 1.3. 
