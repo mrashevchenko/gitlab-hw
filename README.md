@@ -15,7 +15,7 @@ sudo systemctl status mysql.service
 create user 'sys_temp'@'%' identified by '123456789';
 ```
 1.3. 
-https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw120201.PNG?raw=true
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw120201.PNG?raw=true)
 ```
 select User,Host from mysql.user;
 ```
@@ -25,7 +25,7 @@ grant ALL PRIVILEGES on *.* to 'sys_temp'@'%' with GRANT option;
 flush privileges;
 ```
 1.5.
-https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw1202011.PNG?raw=true
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw1202011.PNG?raw=true)
 ```
 show grants for 'sys_temp'@'%';
 ```
@@ -53,10 +53,10 @@ source sakila-data.sql;
 show tables;
 ```
 1.8. 
-https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw12020111.PNG?raw=true
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw12020111.PNG?raw=true)
 ```
 show tables;
 ```
 
 ### Задание 2
-https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw120202.PNG?raw=true
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-02/img/hw120202.PNG?raw=true)
