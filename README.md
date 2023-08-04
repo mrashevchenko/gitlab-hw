@@ -1,18 +1,93 @@
-# Домашнее задание к занятию "``" - `Rashevchenko Mikhail`
+# Домашнее задание к занятию «Базы данных» - `Rashevchenko Mikhail`
 
+### Задание 1
 
-### Инструкция по выполнению домашнего задания
+```
+CREATE TABLE (
 
-   1. Сделайте `fork` данного репозитория к себе в Github и переименуйте его по названию или номеру занятия, например, https://github.com/имя-вашего-репозитория/git-hw или  https://github.com/имя-вашего-репозитория/7-1-ansible-hw).
-   2. Выполните клонирование данного репозитория к себе на ПК с помощью команды `git clone`.
-   3. Выполните домашнее задание и заполните у себя локально этот файл README.md:
-      - впишите вверху название занятия и вашу фамилию и имя
-      - в каждом задании добавьте решение в требуемом виде (текст/код/скриншоты/ссылка)
-      - для корректного добавления скриншотов воспользуйтесь [инструкцией "Как вставить скриншот в шаблон с решением](https://github.com/netology-code/sys-pattern-homework/blob/main/screen-instruction.md)
-      - при оформлении используйте возможности языка разметки md (коротко об этом можно посмотреть в [инструкции  по MarkDown](https://github.com/netology-code/sys-pattern-homework/blob/main/md-instruction.md))
-   4. После завершения работы над домашним заданием сделайте коммит (`git commit -m "comment"`) и отправьте его на Github (`git push origin`);
-   5. Для проверки домашнего задания преподавателем в личном кабинете прикрепите и отправьте ссылку на решение в виде md-файла в вашем Github.
-   6. Любые вопросы по выполнению заданий спрашивайте в чате учебной группы и/или в разделе “Вопросы по заданию” в личном кабинете.
-   
-Желаем успехов в выполнении домашнего задания!
-   
+personal_id primary_key,
+
+last_name_name varchar(50),
+
+first_name varchar(50),
+
+patronymic_name varchar(50),
+
+salary NUMERIC,
+
+post_id NUMERIC,
+
+spod_id NUMERIC,
+
+date_of_hiring date,
+
+office_id VARCHAR(50),
+
+project_id NUMERIC,)
+```
+
+```
+CREATE TABLE salary (
+
+salary_id primary_key
+
+salary_name varchar(50)
+
+)
+```
+
+```
+CREATE TABLE post (
+
+post_id primary_key
+
+position_name varchar(50)
+
+)
+```
+
+```
+CREATE TABLE spod (
+
+spod_id primary_key
+
+spod_name varchar(50)
+
+)
+```
+
+```
+CREATE TABLE date_of_hiring (
+
+  ddate_of_hiring primary_key,
+
+  date DATE
+
+)
+```
+
+```
+CREATE TABLE office (
+
+  office_id primary_key,
+
+  country VARCHAR(50),
+  
+  city VARCHAR(50),
+  
+  street VARCHAR(50),
+  
+  building NUMERIC
+
+)
+```
+
+```
+CREATE TABLE project (
+
+  project_id primary_key,
+
+  project_name VARCHAR(50)
+
+)
+```
