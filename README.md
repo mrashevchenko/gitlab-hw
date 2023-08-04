@@ -15,8 +15,6 @@ CREATE TABLE personal(
 
   salary NUMERIC,
 
-  post_id NUMERIC,
-
   spod_id NUMERIC,
 
   date_of_hiring DATE,
