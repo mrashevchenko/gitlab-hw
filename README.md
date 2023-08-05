@@ -4,10 +4,10 @@
 
 ### Задание 1
 ```
-SELECT *
-    -> FROM payment
-    -> WHERE payment_date BETWEEN  CAST('2005-06-15' AS DATE) AND CAST('2005-06-19' AS DATE)
-    -> AND amount > 10;
+SELECT DISTINCT district 
+    -> FROM address
+    -> WHERE district  LIKE 'k%a' and district not LIKE  '% %';
+
 ```
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-03/img/hw120301.PNG?raw=true)
 
