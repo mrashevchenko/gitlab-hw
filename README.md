@@ -24,3 +24,10 @@ select distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (part
 select concat(c.last_name, ' ', c.first_name) as name, sum(p.amount) as summ from payment p, rental r, customer c, inventory i where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id group by name;
 ```
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-05/img/hw120503.PNG?raw=true)  
+
+
+```
+explain analyze
+select concat(c.last_name, ' ', c.first_name) as name, sum(p.amount) as summ from payment p, rental r, customer c, inventory i where p.payment_date >= '2005-07-30' and p.payment_date < DATE_ADD('2005-07-30', INTERVAL 1 DAY) and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id group by name;
+```
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-05/img/hw120504.PNG?raw=true)  
