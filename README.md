@@ -15,7 +15,7 @@ SELECT DISTINCT district
 ```
 SELECT payment_id, amount, CAST(payment_date AS DATE) FROM payment WHERE amount > 10.00 AND payment_date BETWEEN '2005-06-15' AND '2005-06-19';
 ```
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-03/img/hw120302.PNG?raw=true)
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw12-03/img/hw1203022.PNG?raw=true)
 
 ### Задание 3
 ```
