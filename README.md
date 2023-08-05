@@ -1,4 +1,4 @@
-# Домашнее задание к занятию «SQL. Часть 1» - `Rashevchenko Mikhail`
+# Домашнее задание к занятию «SQL. Часть 2» - `Rashevchenko Mikhail`
 
 ---
 ### Задание 1
