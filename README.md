@@ -24,9 +24,9 @@
 - Какие сетевые службы в ней разрешены:
   ![](https://github.com/mrashevchenko/gitlab-hw/blob/13-01/img/hw130100.PNG?raw=true)
 - Какие уязвимости были вами обнаружены:
-  vsftpd 2.3.4 - Backdoor Command Execution - https://www.exploit-db.com/exploits/49757
-  ProFTPd IAC 1.3.x - Remote Command Execution - https://www.exploit-db.com/exploits/15449
-  TelnetD encrypt_keyid - Function Pointer Overwrite https://www.exploit-db.com/exploits/18280 
+  - vsftpd 2.3.4 - Backdoor Command Execution - https://www.exploit-db.com/exploits/49757
+  - ProFTPd IAC 1.3.x - Remote Command Execution - https://www.exploit-db.com/exploits/15449
+  - TelnetD encrypt_keyid - Function Pointer Overwrite https://www.exploit-db.com/exploits/18280 
 
 ### Задание 2
 
