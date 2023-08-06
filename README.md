@@ -14,6 +14,7 @@
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/13-01/img/hw1301011111.PNG?raw=true)
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/13-01/img/hw13010111111.PNG?raw=true)
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/13-01/img/hw130101111111.PNG?raw=true)
+
 Попробуйте найти уязвимости, которым подвержена эта виртуальная машина.
 Сами уязвимости можно поискать на сайте https://www.exploit-db.com/.
 Для этого нужно в поиске ввести название сетевой службы, обнаруженной на атакуемой машине, и выбрать подходящие по версии уязвимости.
