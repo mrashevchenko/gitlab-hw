@@ -7,7 +7,7 @@
 
 Установите и запустите Elasticsearch, после чего поменяйте параметр cluster_name на случайный. 
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-04/img/2hw110401.PNG?raw=true).
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-03/img/2hw110301.PNG?raw=true).
 
 ---
 
@@ -15,7 +15,7 @@
 
 Установите и запустите Kibana.
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-04/img/2hw110402.PNG?raw=true).
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-03/img/2hw110302.PNG?raw=true).
 
 ---
 
@@ -23,7 +23,7 @@
 
 Установите и запустите Logstash и Nginx. С помощью Logstash отправьте access-лог Nginx в Elasticsearch. 
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-04/img/2hw110403.PNG?raw=true).
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-03/img/2hw110303.PNG?raw=true).
 
 ---
 
@@ -31,4 +31,4 @@
 
 Установите и запустите Filebeat. Переключите поставку логов Nginx с Logstash на Filebeat. 
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-04/img/2hw110404.PNG?raw=true).
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw11-03/img/2hw110304.PNG?raw=true).
