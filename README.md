@@ -17,3 +17,5 @@
 * файлы вида override.tf, override.tf.json, *_override.tf, *_override.tf.json  
 `override.tf, override.tf.json, *_override.tf, *_override.tf.json`  
  
+Проверка изменения
+* Операции над файлами для коммитов выполенены
