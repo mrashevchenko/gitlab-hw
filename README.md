@@ -24,9 +24,9 @@ dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md
 225466bc3e5f35baa5d07197bbc079345b77525e Cleanup after v0.12.23 release
 ```
 5. Найдите коммит в котором была создана функция `func providerSource`, ее определение в коде выглядит 
-так `func providerSource(...)` (вместо троеточего перечислены аргументы).   
-```8c928e835 main: Consult local directories as potential mirrors of providers
-```   
+так `func providerSource(...)` (вместо троеточего перечислены аргументы).     
+` 8c928e835 main: Consult local directories as potential mirrors of providers `
+   
 ```**commit 8c928e83589d90a031f811fae52a81be7153e82f**
 Author: Martin Atkins <mart@degeneration.co.uk>
 Date:   Thu Apr 2 18:04:39 2020 -0700
