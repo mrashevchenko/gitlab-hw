@@ -11,7 +11,7 @@
 
 ## Задание №2 – Теги 
 
-Тег `v0.0` и `v0.1` добавлены к коммиту `6dd4b2a1` 
+Тег `v0.0` и `v0.1` добавлены к коммиту `6dd4b2a1`   
 `https://gitlab.com/hw-dz/devops-netology/-/tags`    
 `https://github.com/mrashevchenko/gitlab-hw/tags`    
 
