@@ -17,3 +17,4 @@
 * файлы вида override.tf, override.tf.json, *_override.tf, *_override.tf.json  
 `override.tf, override.tf.json, *_override.tf, *_override.tf.json`  
  
+Теперь измените содержание файла README.md, добавив новую строчку.
