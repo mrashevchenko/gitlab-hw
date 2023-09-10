@@ -51,7 +51,7 @@ ansible 2.10.8
   executable location = /usr/bin/ansible
   python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110]
 ```
- ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-02/img/hw050201.PNG?raw=true)  
+ ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-02/img/hw050201.png)  
 ## Задача 4 
 
 Воспроизведите практическую часть лекции самостоятельно.
@@ -75,7 +75,7 @@ Error: The requested URL returned error: 404:
 2. Добавьте его в список образов Vagrant: "vagrant box add bento/ubuntu-20.04 <путь к файлу>".
 
 ```
-mrashe@DESKTOP-H623A53://home/mrashe/local-k8s vagrant ssh
+mrashe@1netology:/home/mrashe/local-k8s vagrant ssh
 Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
