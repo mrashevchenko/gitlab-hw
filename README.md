@@ -23,37 +23,25 @@
 
 ```
 root@1netology:/home/mrashe/Downloads# terraform -version
-
 Terraform v1.5.5
-
 on linux_386
 ```
 ```
 root@1netology:/home/mrashe/Downloads# vagrant -v
 
 Vagrant 2.2.14
-
 ```
 ```
 root@1netology:/home/mrashe/Downloads# vboxmanage --version
-
 6.1.46r158378
-
-
 ```
 ```
 root@1netology:/home/mrashe/Downloads# ansible --version
-
 ansible 2.10.8
-
   config file = None
-
   configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-
   ansible python module location = /usr/lib/python3/dist-packages/ansible
-
   executable location = /usr/bin/ansible
-
   python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110]
 ```
 
