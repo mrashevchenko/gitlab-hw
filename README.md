@@ -28,7 +28,6 @@ on linux_386
 ```
 ```
 root@1netology:/home/mrashe/Downloads# vagrant -v
-
 Vagrant 2.2.14
 ```
 ```
