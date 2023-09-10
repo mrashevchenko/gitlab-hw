@@ -51,7 +51,7 @@ ansible 2.10.8
   executable location = /usr/bin/ansible
   python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110]
 ```
-
+ ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-02/img/hw050201.PNG?raw=true)  
 ## Задача 4 
 
 Воспроизведите практическую часть лекции самостоятельно.
