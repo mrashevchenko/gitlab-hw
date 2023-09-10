@@ -74,4 +74,27 @@ Error: The requested URL returned error: 404:
 1. Скачайте с [сайта](https://app.vagrantup.com/bento/boxes/ubuntu-20.04) файл-образ "bento/ubuntu-20.04".
 2. Добавьте его в список образов Vagrant: "vagrant box add bento/ubuntu-20.04 <путь к файлу>".
 
-*Приложите скриншоты в качестве решения на эту задачу.*
+```
+mrashe@DESKTOP-H623A53://home/mrashe/local-k8s vagrant ssh
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Mon Sep  11 02:07:24 2023 AM UTC
+
+  System load:  0.0               Users logged in:          0
+  Usage of /:   3.2% of 61.31GB   IPv4 address for docker0: 172.17.0.1
+  Memory usage: 20%               IPv4 address for eth0:    10.0.2.15
+  Swap usage:   0%                IPv4 address for eth1:    192.168.192.11
+  Processes:    103
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+Last login: Mon Sep  11 02:06:56 2023 from 10.0.2.2
+vagrant@server1:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
