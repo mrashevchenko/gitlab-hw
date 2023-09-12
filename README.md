@@ -23,7 +23,8 @@ Hey, Netology
 
 Опубликуйте созданный fork в своём репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.    
 </details>
-Ответ:   
+Ответ:
+
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050301.png)  
 
 https://hub.docker.com/r/mrashe/hw0503
