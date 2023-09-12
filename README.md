@@ -25,7 +25,7 @@ Hey, Netology
 </details>
 Ответ:   
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050301.png)  
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050301.PNG)  
 
 https://hub.docker.com/r/mrashe/hw0503
 
@@ -88,4 +88,4 @@ https://hub.docker.com/r/mrashe/hw0503
 </details>
 Ответ: 
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050302.png)  
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050302.PNG)  
