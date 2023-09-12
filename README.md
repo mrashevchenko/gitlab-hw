@@ -88,3 +88,4 @@ https://hub.docker.com/r/mrashe/hw0503
 </details>
 Ответ: 
 
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050302.png)  
