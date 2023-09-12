@@ -27,7 +27,8 @@ Hey, Netology
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050301.png)  
 
 https://hub.docker.com/r/mrashe/hw0503
---
+
+
 ## Задача 2
 <details><summary>Задача</summary>
 Посмотрите на сценарий ниже и ответьте на вопрос:
@@ -51,7 +52,7 @@ https://hub.docker.com/r/mrashe/hw0503
 </details>
 Ответ: 
 
---
+
 ## Задача 3
 <details><summary>Задача</summary>
 - Запустите первый контейнер из образа ***centos*** c любым тегом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера.
