@@ -21,11 +21,8 @@ Hey, Netology
 </html>
 ```
 
+Опубликуйте созданный fork в своём репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.    
 </details>
-
-
-
-Опубликуйте созданный fork в своём репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.     
 
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050301.png)  
 
