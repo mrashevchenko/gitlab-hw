@@ -54,10 +54,7 @@ e5b8556be293   gcr.io/google-containers/cadvisor:v0.34.0   "/usr/bin/cadvisor -�
 Чтобы получить зачёт, предоставьте: 
 
 - скриншот работающего веб-интерфейса Grafana с текущими метриками, как на примере ниже.
-[[<p align="center">
-  <img width="1200" height="600" src="./assets/yc_02.png">
-</p>](https://github.com/netology-code/virtd-homeworks/blob/main/05-virt-04-docker-compose/assets/yc_02.png)](https://github.com/netology-code/virtd-homeworks/blob/main/05-virt-04-docker-compose/assets/yc_02.png)
-
+![](https://github.com/netology-code/virtd-homeworks/blob/main/05-virt-04-docker-compose/assets/yc_02.png)
 
 <details><summary>Ответ:</summary>  
 
