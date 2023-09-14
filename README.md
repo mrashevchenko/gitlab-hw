@@ -1,14 +1,15 @@
 # Домашнее задание к занятию 4. «Оркестрация группой Docker-контейнеров на примере Docker Compose» - `Rashevchenko Mikhail`
 
 ## Задача 1
-<details>
+
 Создайте собственный образ любой операционной системы (например, debian-11) с помощью Packer версии 1.5.0 ([инструкция](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/packer-quickstart)).
 
 Чтобы получить зачёт, вам нужно предоставить скриншот страницы с созданным образом из личного кабинета YandexCloud.
-</details>
-<summary>Задача</summary>Ответ:  
+
+<details><summary>Задача</summary>Ответ:  
 
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-04/img/hw050402.PNG)  
+</details>
 
 ## Задача 2
 <details>
@@ -17,6 +18,7 @@
 <summary>Задача</summary>Ответ: 
 
 ![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-04/img/hw050401.PNG)  
+</details>
 
 ## Задача 3
 <details>
