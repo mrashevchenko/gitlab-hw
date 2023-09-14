@@ -29,8 +29,8 @@
 
 ```bash
 ╰─➤ ssh centos@51.250.16.13
-[centos@node01 ~]$ sudo -i
-[root@node01 ~]# docker ps
+[centos@hw01 ~]$ sudo -i
+[root@hw01 ~]# docker ps
 CONTAINER ID   IMAGE                                       COMMAND                  CREATED         STATUS                   PORTS                                                                              NAMES
 9e2e61570bae   prom/prometheus:v2.17.1                     "/bin/prometheus --c…"   2 minutes ago   Up 2 minutes             9090/tcp                                                                           prometheus
 65258868ef0b   stefanprodan/caddy                          "/sbin/tini -- caddy…"   2 minutes ago   Up 2 minutes             0.0.0.0:3000->3000/tcp, 0.0.0.0:9090-9091->9090-9091/tcp, 0.0.0.0:9093->9093/tcp   caddy
