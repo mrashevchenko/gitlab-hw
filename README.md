@@ -1,92 +1,62 @@
-# Домашнее задание к занятию 3. «Введение. Экосистема. Архитектура. Жизненный цикл Docker-контейнера» - `Rashevchenko Mikhail`
+# Домашнее задание к занятию 4. «Оркестрация группой Docker-контейнеров на примере Docker Compose» - `Rashevchenko Mikhail`
 
 ## Задача 1
 <details><summary>Задача</summary>
+Создайте собственный образ любой операционной системы (например, debian-11) с помощью Packer версии 1.5.0 ([инструкция](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/packer-quickstart)).
 
-Сценарий выполнения задачи:
-
-- создайте свой репозиторий на https://hub.docker.com;
-- выберите любой образ, который содержит веб-сервер Nginx;
-- создайте свой fork образа;
-- реализуйте функциональность:
-запуск веб-сервера в фоне с индекс-страницей, содержащей HTML-код ниже:
-```
-<html>
-<head>
-Hey, Netology
-</head>
-<body>
-<h1>I’m DevOps Engineer!</h1>
-</body>
-</html>
-```
-
-Опубликуйте созданный fork в своём репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.    
+Чтобы получить зачёт, вам нужно предоставить скриншот страницы с созданным образом из личного кабинета YandexCloud.
 </details>
-Ответ:   
+Ответ:  
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050301.PNG)  
-
-https://hub.docker.com/r/mrashe/hw0503
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-04/img/hw050402.PNG)  
 
 ## Задача 2
 <details><summary>Задача</summary>
-Посмотрите на сценарий ниже и ответьте на вопрос:
-«Подходит ли в этом сценарии использование Docker-контейнеров или лучше подойдёт виртуальная машина, физическая машина? Может быть, возможны разные варианты?»
+**2.1.** Создайте вашу первую виртуальную машину в YandexCloud с помощью web-интерфейса YandexCloud.        
 
-Детально опишите и обоснуйте свой выбор.
-
-
---
-
-Сценарий:
-
-- высоконагруженное монолитное Java веб-приложение;
-- Nodejs веб-приложение;
-- мобильное приложение c версиями для Android и iOS;
-- шина данных на базе Apache Kafka;
-- Elasticsearch-кластер для реализации логирования продуктивного веб-приложения — три ноды elasticsearch, два logstash и две ноды kibana;
-- мониторинг-стек на базе Prometheus и Grafana;
-- MongoDB как основное хранилище данных для Java-приложения;
-- Gitlab-сервер для реализации CI/CD-процессов и приватный (закрытый) Docker Registry.   
 </details>
-Ответ:
+Ответ: 
 
-- высоконагруженное монолитное Java веб-приложение:
-
-> Выбор ВМ или физический сервер т.к. монолитное веб-приложение - использование Docker не принесет улучшений
-
-- Nodejs веб-приложение;
-
-> Docker-контейнер т.к. удобно разворачивать и эскплуатировать, хорошая масшатабируемость и скорость развертывания
-- мобильное приложение c версиями для Android и iOS;
-
-> ВМ т.к. Docker-контейнер подойдет только для Android
-- шина данных на базе Apache Kafka;
-
-> Docker-контейнер т.к. лучше масштабирование
-- Elasticsearch-кластер для реализации логирования продуктивного веб-приложения — три ноды elasticsearch, два logstash и две ноды kibana;
-
-> Docker-контейнер т.к. удобно развернуть такое количество
-- мониторинг-стек на базе Prometheus и Grafana;
-
-> Docker-контейнер т.к. лучше масштабирование
-- MongoDB как основное хранилище данных для Java-приложения;
-
-> ВМ т.к. базе данных нужно большая производительность
-- Gitlab-сервер для реализации CI/CD-процессов и приватный (закрытый) Docker Registry.  
-
-> Docker-контейнер либо ВМ т.к. все зависит от нагрузки и количества пользователей.
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-04/img/hw050401.PNG)  
 
 ## Задача 3
 <details><summary>Задача</summary>
-- Запустите первый контейнер из образа ***centos*** c любым тегом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера.
-- Запустите второй контейнер из образа ***debian*** в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера.
-- Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```.
-- Добавьте ещё один файл в папку ```/data``` на хостовой машине.
-- Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
+С помощью Ansible и Docker Compose разверните на виртуальной машине из предыдущего задания систему мониторинга на основе Prometheus/Grafana.
+Используйте Ansible-код в директории ([src/ansible](https://github.com/netology-group/virt-homeworks/tree/virt-11/05-virt-04-docker-compose/src/ansible)).
+
+Чтобы получить зачёт, вам нужно предоставить вывод команды "docker ps" , все контейнеры, описанные в [docker-compose](https://github.com/netology-group/virt-homeworks/blob/virt-11/05-virt-04-docker-compose/src/ansible/stack/docker-compose.yaml),  должны быть в статусе "Up".
+</details>
+Ответ:  
+```bash
+╰─➤ ssh centos@51.250.16.13
+[centos@hw01 ~]$ sudo -i
+[root@hw01 ~]# docker ps
+CONTAINER ID   IMAGE                                       COMMAND                  CREATED         STATUS                   PORTS                                                                              NAMES
+9e2e61570bae   prom/prometheus:v2.17.1                     "/bin/prometheus --c…"   2 minutes ago   Up 2 minutes             9090/tcp                                                                           prometheus
+65258868ef0b   stefanprodan/caddy                          "/sbin/tini -- caddy…"   2 minutes ago   Up 2 minutes             0.0.0.0:3000->3000/tcp, 0.0.0.0:9090-9091->9090-9091/tcp, 0.0.0.0:9093->9093/tcp   caddy
+56202a408eca   prom/alertmanager:v0.20.0                   "/bin/alertmanager -…"   2 minutes ago   Up 2 minutes             9093/tcp                                                                           alertmanager
+7c39b1d4ca77   prom/pushgateway:v1.2.0                     "/bin/pushgateway"       2 minutes ago   Up 2 minutes             9091/tcp                                                                           pushgateway
+51f7ea9d7c2c   grafana/grafana:7.4.2                       "/run.sh"                2 minutes ago   Up 2 minutes             3000/tcp                                                                           grafana
+e5b8556be293   gcr.io/google-containers/cadvisor:v0.34.0   "/usr/bin/cadvisor -…"   2 minutes ago   Up 2 minutes (healthy)   8080/tcp                                                                           cadvisor
+0b8650c62985   prom/node-exporter:v0.18.1                  "/bin/node_exporter …"   2 minutes ago   Up 2 minutes             9100/tcp                                                                           nodeexporter
+```
+
+
+## Задача 4
+<details><summary>Задача</summary>
+1. Откройте веб-браузер, зайдите на страницу http://<внешний_ip_адрес_вашей_ВМ>:3000.
+2. Используйте для авторизации логин и пароль из [.env-file](https://github.com/netology-group/virt-homeworks/blob/virt-11/05-virt-04-docker-compose/src/ansible/stack/.env).
+3. Изучите доступный интерфейс, найдите в интерфейсе автоматически созданные docker-compose-панели с графиками([dashboards](https://grafana.com/docs/grafana/latest/dashboards/use-dashboards/)).
+4. Подождите 5-10 минут, чтобы система мониторинга успела накопить данные.
+
+Чтобы получить зачёт, предоставьте: 
+
+- скриншот работающего веб-интерфейса Grafana с текущими метриками, как на примере ниже.
+<p align="center">
+  <img width="1200" height="600" src="./assets/yc_02.png">
+</p>
+
 </details>
 Ответ:
 
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050303.PNG)  
-![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-03/img/hw050302.PNG)  
+![](https://github.com/mrashevchenko/gitlab-hw/blob/hw05-virt-04/img/hw050403.PNG) 
