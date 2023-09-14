@@ -13,7 +13,6 @@
 ## Задача 2
 <details><summary>Задача</summary>
 **2.1.** Создайте вашу первую виртуальную машину в YandexCloud с помощью web-интерфейса YandexCloud.        
-
 </details>
 Ответ: 
 
