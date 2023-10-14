@@ -107,6 +107,67 @@ mysql>  select * from information_schema.user_attributes where user='test';
 <details><summary>Ответ:</summary> 
 
 ```bash  
+mysql> use test_db
+Database changed
+mysql> SET profiling = 1;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> show profiles;
++----------+------------+-------------------+
+| Query_ID | Duration   | Query             |
++----------+------------+-------------------+
+|        1 | 0.00045300 | SELECT DATABASE() |
+|        2 | 0.00019225 | SET profiling = 1 |
++----------+------------+-------------------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql> SELECT TABLE_NAME,
+    -> ENGINE
+    -> FROM   information_schema.TABLES
+    ->  WHERE  TABLE_SCHEMA = 'test_db';
++------------+--------+
+| TABLE_NAME | ENGINE |
++------------+--------+
+| orders     | InnoDB |
++------------+--------+
+1 row in set (0.00 sec)
+
+```
+
+```bash  
+
+
+mysql> SELECT TABLE_NAME,
+    -> ENGINE
+    -> FROM   information_schema.TABLES
+    ->  WHERE  TABLE_SCHEMA = 'test_db';
++------------+--------+
+| TABLE_NAME | ENGINE |
++------------+--------+
+| orders     | InnoDB |
++------------+--------+
+1 row in set (0.00 sec)
+
+```
+
+```bash  
+
+mysql> alter table orders engine = myisam;
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> alter table orders engine = innodb;
+Query OK, 5 rows affected (0.15 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show profiles;
++----------+------------+------------------------------------+
+| Query_ID | Duration   | Query                              |
++----------+------------+------------------------------------+
+|        7 | 0.05859400 | alter table orders engine = myisam |
+|        8 | 0.14750125 | alter table orders engine = innodb |
++----------+------------+------------------------------------+
+2 rows in set, 1 warning (0.00 sec)
 
 ```
 
@@ -129,6 +190,20 @@ mysql>  select * from information_schema.user_attributes where user='test';
 <details><summary>Ответ:</summary>  
  
 ```bash  
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+secure-file-priv= NULL
+
+# Custom config should go here
+!includedir /etc/mysql/conf.d/
+
+innodb_flush_method = O_DSYN
+innodb_file_per_table = 1
+innodb_log_buffer_size = 1M
+innodb_buffer_pool_size = 1G
+innodb_log_file_size = 100M
 
 ``` 
 </details>
