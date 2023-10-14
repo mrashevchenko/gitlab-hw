@@ -11,20 +11,44 @@
 
 ```yaml  
 version: '3.5'
-
 services:
-  database:
-    image: postgres:12
-    ports:
-      - "5432:5432"
+  mysql:
+    image: mysql:8
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: test_db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=qwe123 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test_db
     volumes:
-      - ./db-data/:/var/lib/postgresql/data/
-      - ./db-backup/:/data/backup/postgres  
+      - ./data:/var/lib/mysql
+      - ./backup:/data/backup/mysql
+    ports:
+      - "3306:3306"
+    restart: always 
 ```
+
+```bash  
+mysql> SELECT * FROM orders WHERE price > 300;
++----+----------------+-------+
+| id | title          | price |
++----+----------------+-------+
+|  2 | My little pony |   500 |
++----+----------------+-------+
+1 row in set (0.01 sec)
+
+```
+
+```bash  
+mysql> SELECT count(*) FROM orders WHERE price > 300;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.01 sec)
+
+```
+
 </details>
 
 ## Задача 2
