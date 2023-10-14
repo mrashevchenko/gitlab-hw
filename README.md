@@ -70,6 +70,24 @@ mysql> SELECT count(*) FROM orders WHERE price > 300;
 <details><summary>Ответ:</summary>
   
 ```bash  
+mysql> CREATE USER 'test'@'localhost'
+    -> IDENTIFIED WITH mysql_native_password BY 'test-pass' 
+    -> WITH MAX_QUERIES_PER_HOUR 100
+    -> PASSWORD EXPIRE INTERVAL 180 DAY
+    -> FAILED_LOGIN_ATTEMPTS 3
+    -> ATTRIBUTE '{"fname": "James", "lname": "Pretty"}';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> GRANT SELECT ON test_db.* TO 'test'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql>  select * from information_schema.user_attributes where user='test';
++------+-----------+---------------------------------------+
+| USER | HOST      | ATTRIBUTE                             |
++------+-----------+---------------------------------------+
+| test | localhost | {"fname": "James", "lname": "Pretty"} |
++------+-----------+---------------------------------------+
+1 row in set (0.01 sec)
 
 ```
 
