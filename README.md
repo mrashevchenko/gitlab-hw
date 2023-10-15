@@ -287,21 +287,104 @@ test_database=# SELECT tablename, attname, avg_width FROM pg_stats WHERE avg_wid
 
 <details><summary>Ответ:</summary> 
 
+-  SQL-транзакция
 ```bash  
+BEGIN;
+ALTER TABLE orders RENAME TO orders_old;
 
+CREATE TABLE orders AS table orders_old WITH NO DATA;
+
+CREATE TABLE orders_1 (
+    CHECK (price > 499)
+) INHERITS (orders);
+
+CREATE TABLE orders_2 (
+    CHECK (price <= 499)
+) INHERITS (orders);
+
+CREATE RULE orders_1_insert AS
+ON INSERT TO orders WHERE
+    (price > 499)
+DO INSTEAD
+    INSERT INTO orders_1 VALUES (NEW.*);
+       
+CREATE RULE orders_2_insert AS
+ON INSERT TO orders WHERE
+    (price <= 499)
+DO INSTEAD
+    INSERT INTO orders_2 VALUES (NEW.*);
+    
+INSERT INTO orders
+SELECT * FROM orders_old;
+COMMIT;
 
 ```
 
 ```bash  
+test_database=# \d
+              List of relations
+ Schema |     Name      |   Type   |  Owner   
+--------+---------------+----------+----------
+ public | orders        | table    | postgres
+ public | orders_1      | table    | postgres
+ public | orders_2      | table    | postgres
+ public | orders_id_seq | sequence | postgres
+ public | orders_old    | table    | postgres
+(5 rows)
+
+test_database=# TABLE orders_1;
+ id |       title        | price 
+----+--------------------+-------
+  2 | My little database |   500
+  6 | WAL never lies     |   900
+  8 | Dbiezdmin          |   501
+(3 rows)
+
+test_database=# TABLE orders_2;
+ id |        title         | price 
+----+----------------------+-------
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  7 | Me and my bash-pet   |   499
+(5 rows)
+
+test_database=# TABLE orders;
+ id |        title         | price 
+----+----------------------+-------
+  2 | My little database   |   500
+  6 | WAL never lies       |   900
+  8 | Dbiezdmin            |   501
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  7 | Me and my bash-pet   |   499
+(8 rows)
 
 
 ```
+- Как изначально исключить "ручное" разбиение при проектировании таблицы orders
+  
+```bash  
+CREATE TABLE orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL,
+    price integer DEFAULT 0
+) PARTITION BY RANGE (price);
+
+```
+- Исключение для таблиц orders_1 b orders_2
 
 ```bash  
+CREATE TABLE orders_1 PARTITION OF orders
+    FOR VALUES GREATER THAN ('499');
 
+CREATE TABLE orders_2 PARTITION OF orders
+    FOR VALUES FROM ('0') TO ('499');
 
 ```
-
 </details>
 
 ## Задача 4
@@ -312,9 +395,68 @@ test_database=# SELECT tablename, attname, avg_width FROM pg_stats WHERE avg_wid
 
 
 <details><summary>Ответ:</summary>  
- 
+
+- Бекап БД `test_database`. 
 ```bash  
+root@71ff6c04ae42:/#   pg_dump -U postgres -v -f /data/backup/postgres/testdatabase.sql
+pg_dump: last built-in OID is 16383
+pg_dump: reading extensions
+pg_dump: identifying extension members
+pg_dump: reading schemas
+pg_dump: reading user-defined tables
+pg_dump: reading user-defined functions
+pg_dump: reading user-defined types
+pg_dump: reading procedural languages
+pg_dump: reading user-defined aggregate functions
+pg_dump: reading user-defined operators
+pg_dump: reading user-defined access methods
+pg_dump: reading user-defined operator classes
+pg_dump: reading user-defined operator families
+pg_dump: reading user-defined text search parsers
+pg_dump: reading user-defined text search templates
+pg_dump: reading user-defined text search dictionaries
+pg_dump: reading user-defined text search configurations
+pg_dump: reading user-defined foreign-data wrappers
+pg_dump: reading user-defined foreign servers
+pg_dump: reading default privileges
+pg_dump: reading user-defined collations
+pg_dump: reading user-defined conversions
+pg_dump: reading type casts
+pg_dump: reading transforms
+pg_dump: reading table inheritance information
+pg_dump: reading event triggers
+pg_dump: finding extension tables
+pg_dump: finding inheritance relationships
+pg_dump: reading column info for interesting tables
+pg_dump: flagging inherited columns in subtables
+pg_dump: reading partitioning data
+pg_dump: reading indexes
+pg_dump: flagging indexes in partitioned tables
+pg_dump: reading extended statistics
+pg_dump: reading constraints
+pg_dump: reading triggers
+pg_dump: reading rewrite rules
+pg_dump: reading policies
+pg_dump: reading row-level security policies
+pg_dump: reading publications
+pg_dump: reading publication membership
+pg_dump: reading subscriptions
+pg_dump: reading large objects
+pg_dump: reading dependency data
+pg_dump: saving encoding = UTF8
+pg_dump: saving standard_conforming_strings = on
+pg_dump: saving search_path = 
+pg_dump: implied data-only restore
 
+```
+- Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
+  `Добавил UNIQUE`
+```bash  
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL UNIQUE,
+    price integer DEFAULT 0);
 
-``` 
+```
+
 </details>
