@@ -449,8 +449,7 @@ pg_dump: saving search_path =
 pg_dump: implied data-only restore
 
 ```
-- Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
-  `Добавил UNIQUE`
+- Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`:  `Добавил UNIQUE`
 ```bash  
 CREATE TABLE public.orders (
     id integer NOT NULL,
