@@ -32,6 +32,7 @@ services:
       - "5432:5432"
     restart: always
 ```
+  
 - docker ps
 ```bash
 root@netology:~/hw/psql# docker ps
