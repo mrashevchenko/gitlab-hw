@@ -191,7 +191,85 @@ postgres=# \q
 
 <details><summary>Ответ:</summary>
   
+- Используя `psql` создайте БД `test_database`.  
+  
 ```bash  
+postgres=#  CREATE DATABASE test_database;
+CREATE DATABASE
+```
+- Восстановите бэкап БД в `test_database`.
+  
+```bash
+root@netology:~# docker exec -it psql_postgres_1 /bin/bash
+root@71ff6c04ae42:/data/backup/postgres# psql -U postgres test_database < /data/backup/postgres/test_dump.sql
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+ALTER TABLE
+COPY 8
+ setval 
+--------
+      8
+(1 row)
+
+ALTER TABLE
+```
+
+- Перейдите в управляющую консоль `psql` внутри контейнера.
+
+```bash  
+root@71ff6c04ae42:/# psql -U postgres
+psql (13.12 (Debian 13.12-1.pgdg120+1))
+Type "help" for help.
+
+```
+- Подключитесь к восстановленной БД и проведите операцию ANALYZE для сбора статистики по таблице.
+
+```bash  
+postgres=# \c test_database
+You are now connected to database "test_database" as user "postgres".
+
+```
+- Используя таблицу [pg_stats](https://postgrespro.ru/docs/postgresql/12/view-pg-stats), найдите столбец таблицы `orders` 
+с наибольшим средним значением размера элементов в байтах.
+
+```bash  
+test_database=# \d
+              List of relations
+ Schema |     Name      |   Type   |  Owner   
+--------+---------------+----------+----------
+ public | orders        | table    | postgres
+ public | orders_id_seq | sequence | postgres
+(2 rows)
+
+test_database=# analyze verbose public.orders;
+INFO:  analyzing "public.orders"
+INFO:  "orders": scanned 1 of 1 pages, containing 8 live rows and 8 dead rows; 8 rows in sample, 8 estimated total rows
+ANALYZE
+test_database=# SELECT tablename, attname, avg_width FROM pg_stats WHERE avg_width IN (SELECT MAX(avg_width) FROM pg_stats WHERE tablename = 'orders') and tablename = 'orders';
+ tablename | attname | avg_width 
+-----------+---------+-----------
+ orders    | title   |        16
+(1 row)
+
 
 ```
 
