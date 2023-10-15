@@ -16,6 +16,7 @@
 - выхода из psql
 
 <details><summary>Ответ:</summary>
+
 - docker-compose.yaml
 ```yaml  
 version: '3.5'
