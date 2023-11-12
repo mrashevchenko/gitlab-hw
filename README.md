@@ -5,7 +5,15 @@
 1. Ознакомьтесь с [документацией к security-groups в Yandex Cloud](https://cloud.yandex.ru/docs/vpc/concepts/security-groups?from=int-console-help-center-or-nav).
 2. Запросите preview-доступ к этому функционалу в личном кабинете Yandex Cloud. Обычно его выдают в течение 24-х часов.
 https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.   
-Этот функционал понадобится к следующей лекции. 
+Этот функционал понадобится к следующей лекции.
+
+<details><summary>Ответ:</summary>
+	
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b10a67b2-2a65-470b-b68b-dde5fe4949ae)
+
+</details>
+
+
 
 ------
 ### Внимание!! Обязательно предоставляем на проверку получившийся код в виде ссылки на ваш github-репозиторий!
