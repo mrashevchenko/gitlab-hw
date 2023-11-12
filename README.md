@@ -1,18 +1,5 @@
 # Домашнее задание к занятию `«Основы Terraform. Yandex Cloud»` - `Rashevchenko Mikhail`
 
-### Цели задания
-
-1. Создать свои ресурсы в облаке Yandex Cloud с помощью Terraform.
-2. Освоить работу с переменными Terraform.
-
-
-### Чек-лист готовности к домашнему заданию
-
-1. Зарегистрирован аккаунт в Yandex Cloud. Использован промокод на грант.
-2. Установлен инструмент Yandex CLI.
-3. Исходный код для выполнения задания расположен в директории [**02/src**](https://github.com/netology-code/ter-homeworks/tree/main/02/src).
-
-
 ### Задание 0
 
 1. Ознакомьтесь с [документацией к security-groups в Yandex Cloud](https://cloud.yandex.ru/docs/vpc/concepts/security-groups?from=int-console-help-center-or-nav).
@@ -64,6 +51,7 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 3. Проверьте terraform plan. Изменений быть не должно. 
 
 <details><summary>Ответ:</summary>
+	
 ![](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/925dadf2-e77e-4160-b041-0c61354466fd)
 
 ```bash
@@ -131,8 +119,8 @@ variable "vm_web_core_fraction" {
 3. Примените изменения.
 
 <details><summary>Ответ:</summary>
+	
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/790fc4cc-e34a-4e4c-8962-c3570bff0e0c)
-     
   
 ```bash
 
@@ -338,6 +326,7 @@ variable "vm_db_core_fraction" {
 В качестве решения приложите вывод значений ip-адресов команды ```terraform output```.
 
 <details><summary>Ответ:</summary>
+	
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/e444ad97-f95a-4e56-9eac-5cbf1af04143)
      
 ```bash
@@ -360,6 +349,7 @@ output "VMs" {
 3. Примените изменения.
 
 <details><summary>Ответ:</summary>
+	
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/84d22362-790f-4fc4-8d8b-4d13bd1f642d)
      
 ```bash
@@ -391,9 +381,10 @@ resource "yandex_compute_instance" "platform2" {
 4. Проверьте terraform plan. Изменений быть не должно.
 
 <details><summary>Ответ:</summary>
+	
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/d91d7751-4eb8-44af-ac08-7123ecca8fd1)
-     
-* Закоментировал все не используемые переменные проекта   
+* Выполнил 1 и 2.     
+* Не удалял - Закоментировал все не используемые переменные проекта (для собственного понимания)
 ```bash
 variable "vm_web_family" {
   type	      = string
