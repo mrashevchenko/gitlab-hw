@@ -149,7 +149,7 @@ resource "yandex_compute_instance" "for-each" {
 
 <details><summary>Ответ:</summary>
 	
-*Создал файл disk_vm.tf	
+* Создал файл disk_vm.tf	
 	
 ```bash
 resource "yandex_compute_disk" "disk" {
