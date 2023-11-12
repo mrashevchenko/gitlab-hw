@@ -64,22 +64,10 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 3. Проверьте terraform plan. Изменений быть не должно. 
 
 <details><summary>Ответ:</summary>
-![](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/0b899631-fa0a-4f6d-b77f-26b2ff812fb1)   
-![](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/9ca991c3-98f1-412a-8402-b0bb872ac48c)   
-
-* Файл variables.tf нужен для того, чтобы определить типы переменных и при необходимости, установить их значения по умолчанию.
-* Переименовал файл personal.auto.tfvars_example в personal.auto.tfvars, заполнил переменные. Файл personal.auto.tfvars находится в .gitignore, данные не попадут в сеть.
-* Создал ssh-ключ и записал pub часть в переменную vms_ssh_root_key.
-* Исправил ошибки:
-      * В строке platform_id = "standart-v4" должно быть слово standard
-      * Исправил v4 на v1 - v4 неправильная. Согласно документации может использоватся v1, v2 и v3.
-      * В строке cores = 1 указано неправильное количество ядер процессора. Согласно документации может использоватся минимальное количество из 2 виртуальных ядер процессора для всех платформ.
-* Параметр preemptible = true применяется в том случае, если нужно сделать виртуальную машину прерываемой, то есть возможность остановки ВМ в любой момент. 
-* Параметр core_fraction=5 указывает базовую производительность ядра в процентах. Указывается для экономии ресурсов.  
+     
 ```bash
 
 ```   
-
 
 </details>
 
@@ -89,6 +77,13 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 2. Скопируйте блок ресурса и создайте с его помощью вторую ВМ в файле main.tf: **"netology-develop-platform-db"** ,  cores  = 2, memory = 2, core_fraction = 20. Объявите её переменные с префиксом **vm_db_** в том же файле ('vms_platform.tf').
 3. Примените изменения.
 
+<details><summary>Ответ:</summary>
+     
+```bash
+
+```   
+
+</details>
 
 ### Задание 4
 
@@ -97,6 +92,13 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 
 В качестве решения приложите вывод значений ip-адресов команды ```terraform output```.
 
+<details><summary>Ответ:</summary>
+     
+```bash
+
+```   
+
+</details>
 
 ### Задание 5
 
@@ -104,6 +106,13 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 2. Замените переменные с именами ВМ из файла variables.tf на созданные вами local-переменные.
 3. Примените изменения.
 
+<details><summary>Ответ:</summary>
+     
+```bash
+
+```   
+
+</details>
 
 ### Задание 6
 
@@ -112,23 +121,13 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 3. Найдите и удалите все более не используемые переменные проекта.
 4. Проверьте terraform plan. Изменений быть не должно.
 
-------
+<details><summary>Ответ:</summary>
+     
+```bash
 
-## Дополнительное задание (со звёздочкой*)
+```   
 
-**Настоятельно рекомендуем выполнять все задания со звёздочкой.**   
-Они помогут глубже разобраться в материале. Задания со звёздочкой дополнительные, не обязательные к выполнению и никак не повлияют на получение вами зачёта по этому домашнему заданию. 
-
-### Задание 7*
-
-Изучите содержимое файла console.tf. Откройте terraform console, выполните следующие задания: 
-
-1. Напишите, какой командой можно отобразить **второй** элемент списка test_list.
-2. Найдите длину списка test_list с помощью функции length(<имя переменной>).
-3. Напишите, какой командой можно отобразить значение ключа admin из map test_map.
-4. Напишите interpolation-выражение, результатом которого будет: "John is admin for production server based on OS ubuntu-20-04 with X vcpu, Y ram and Z virtual disks", используйте данные из переменных test_list, test_map, servers и функцию length() для подстановки значений.
-
-В качестве решения предоставьте необходимые команды и их вывод.
+</details>
 
 ------
 ### Правила приёма работы
