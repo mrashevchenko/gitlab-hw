@@ -40,6 +40,7 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 - ответы на вопросы.
 
 <details><summary>Ответ:</summary>
+     
 ![](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/0b899631-fa0a-4f6d-b77f-26b2ff812fb1)   
 ![](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/9ca991c3-98f1-412a-8402-b0bb872ac48c)   
 
@@ -52,6 +53,7 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
       * В строке cores = 1 указано неправильное количество ядер процессора. Согласно документации может использоватся минимальное количество из 2 виртуальных ядер процессора для всех платформ.
 * Параметр preemptible = true применяется в том случае, если нужно сделать виртуальную машину прерываемой, то есть возможность остановки ВМ в любой момент. 
 * Параметр core_fraction=5 указывает базовую производительность ядра в процентах. Указывается для экономии ресурсов.  
+
 </details>
 
 ### Задание 2
