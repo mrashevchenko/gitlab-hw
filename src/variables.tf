@@ -33,8 +33,8 @@ variable "vpc_name" {
 
 ###ssh vars
 
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "ssh-ed25519 AAAAC3Nz123124124E5AAA123123123OZMkc+lbzYCXNhOzqXldzlXYu2A14MQKMq/ root@netology"
-  description = "ssh-keygen -t ed25519"
-}
+#variable "vms_ssh_root_key" {
+#  type        = string
+#  default     = "ssh-ed25519 AAAAC3Nz123124124E5AAA123123123OZMkc+lbzYCXNhOzqXldzlXYu2A14MQKMq/ root@netology"
+#  description = "ssh-keygen -t ed25519"
+#}
