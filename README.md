@@ -391,19 +391,178 @@ resource "yandex_compute_instance" "platform2" {
 4. Проверьте terraform plan. Изменений быть не должно.
 
 <details><summary>Ответ:</summary>
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/d91d7751-4eb8-44af-ac08-7123ecca8fd1)
      
+* Закоментировал все не используемые переменные проекта   
 ```bash
+variable "vm_web_family" {
+  type	      = string
+  default     = "ubuntu-2004-lts"
+  description = "ubuntu version"
+}
+	
+#variable "vm_web_name" {
+#  type	      = string
+#  default     = "netology-develop-platform-web"
+#  description = "instance name"
+#}
 
-```   
+variable "vm_web_platform_id" {
+  type	      = string
+  default     = "standard-v1"
+  description = "platform ID"
+}
 
+#variable "vm_web_cores" {
+#  type        = string
+#  default     = "2"
+#  description = "vCPU numbers"
+#}
+
+#variable "vm_web_memory" {
+#  type        = string
+#  default     = "1"
+#  description = "VM memory, GB"
+#}
+	
+#variable "vm_web_core_fraction" {
+#  type        = string
+#  default     = "5"
+#  description = "core fraction"
+#}
+
+variable "vm_db_family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "ubuntu version"
+}
+
+#variable "vm_db_name" {
+#  type        = string
+#  default     = "netology-develop-platform-db"
+#  description = "instance name"
+#}
+
+variable "vm_db_platform_id" {
+  type        = string
+  default     = "standard-v1"
+  description = "platform ID"
+}
+
+#variable "vm_db_cores" {
+#  type        = string
+#  default     = "2"
+#  description = "vCPU numbers"
+#}
+
+#variable "vm_db_memory" {
+#  type        = string
+#  default     = "2"
+#  description = "VM memory, GB"
+#}
+
+#variable "vm_db_core_fraction" {
+#  type        = string
+#  default     = "20"
+#  description = "core fraction"
+#}
+
+
+variable "vms_resources" {
+  description = "Resources for all vms"
+  type        = map(map(number))
+  default     = {
+    vm_web_resources = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 5
+    }
+    vm_db_resources = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+    }
+  }
+}
+
+variable "common_metadata" {
+  description = "metadata for all vms"
+  type        = map(string)
+  default     = {
+    serial-port-enable = "1"
+    ssh-keys          = "ubuntu:ssh-ed25519 AAA111111111sssssssssOZMkc+lbzYCXNhOzqXldzlXYu2A14MQKMq/ root@netology"
+  }
+}
+```
+```bash
+resource "yandex_vpc_network" "develop" {
+  name = var.vpc_name
+}
+resource "yandex_vpc_subnet" "develop" {
+  name           = var.vpc_name
+  zone           = var.default_zone
+  network_id     = yandex_vpc_network.develop.id
+  v4_cidr_blocks = var.default_cidr
+}
+
+data "yandex_compute_image" "ubuntu" {
+  family = var.vm_web_family
+}
+resource "yandex_compute_instance" "platform1" {
+  name =  local.vm_web_instance_name
+  platform_id = var.vm_web_platform_id
+  metadata = var.common_metadata
+  resources {
+    cores         = var.vms_resources.vm_web_resources.cores
+    memory        = var.vms_resources.vm_web_resources.memory
+    core_fraction = var.vms_resources.vm_web_resources.core_fraction
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+  }
+}
+data "yandex_compute_image" "ubuntu2" {
+  family = var.vm_db_family
+}
+resource "yandex_compute_instance" "platform2" {
+  name        = local.vm_db_instance_name
+  platform_id = var.vm_db_platform_id
+  metadata    = var.common_metadata
+  resources {
+    cores         = var.vms_resources.vm_db_resources.cores
+    memory        = var.vms_resources.vm_db_resources.memory
+    core_fraction = var.vms_resources.vm_db_resources.core_fraction
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+  }
+
+
+
+#  metadata = {
+#    serial-port-enable = 1
+#    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+#  }
+
+}
+
+```
 </details>
-
-------
-### Правила приёма работы
-
-В git-репозитории, в котором было выполнено задание к занятию «Введение в Terraform», создайте новую ветку terraform-02, закоммитьте в эту ветку свой финальный код проекта. Ответы на задания и необходимые скриншоты оформите в md-файле в ветке terraform-02.
-
-В качестве результата прикрепите ссылку на ветку terraform-02 в вашем репозитории.
-
-**Важно. Удалите все созданные ресурсы**.
-
