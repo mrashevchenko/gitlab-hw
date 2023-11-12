@@ -56,9 +56,88 @@
 5. Инициализируйте проект, выполните код.
 
 <details><summary>Ответ:</summary>
-```bash
 
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/0823f9b5-dbee-4e69-a311-7910c4a06b92)
+
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/4f18029a-f4b7-47a9-824a-1067971d0756)
+
+
+Созданил две ВМ с помощью мета-аргумент count loop. 
+```bash
+data "yandex_compute_image" "ubuntu" {
+  family = "ubuntu-2004-lts"
+}
+
+resource "yandex_compute_instance" "count" {
+  count = 2
+  name = "web-${count.index + 1}"
+
+  platform_id = "standard-v1"
+  resources {
+    cores         = 2
+    memory        = 1
+    core_fraction = 5
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+    security_group_ids = [
+      yandex_vpc_security_group.example.id
+    ]
+  }
+
+  metadata = {
+    serial-port-enable = 1
+    ssh-keys           = join(":", ["ubuntu", file("~/.ssh/id_ed25519.pub")])
+  }
+
+}
 ```
+Создал 2 разных по cpu/ram/disk ВМ используя мета-аргумент for_each loop и используя переменную типа list(object({ vm_name=string, cpu=number, ram=number, disk=number }))
+
+```bash
+resource "yandex_compute_instance" "for-each" {
+  depends_on = [yandex_compute_instance.count]
+
+  for_each = { main = {cpu=2, ram=1, fraction=20}, replica = {cpu=4, ram=2, fraction=5} }
+
+  name = "${each.key}"
+
+  platform_id = "standard-v1"
+  resources {
+    cores         = "${each.value.cpu}"
+    memory        = "${each.value.ram}"
+    core_fraction = "${each.value.fraction}"
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+  }
+
+  metadata = {
+    serial-port-enable = 1
+    ssh-keys           = join(":", ["ubuntu", file("~/.ssh/id_ed25519.pub")])
+  }
+
+}
+```
+
 </details>
 
 ------
@@ -93,5 +172,3 @@
 
 ```
 </details>
-
-------
