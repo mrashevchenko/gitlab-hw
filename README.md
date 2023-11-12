@@ -44,6 +44,7 @@
 ![](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/5e80a8a6-16f0-4b94-95e3-ff033e8c9b11)
 
 </details>
+
 ------
 
 ### Задание 2
