@@ -62,7 +62,7 @@
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/4f18029a-f4b7-47a9-824a-1067971d0756)
 
 
-Созданил две ВМ с помощью мета-аргумент count loop. 
+* Создал две ВМ с помощью мета-аргумент count loop через файл count-vm.tf
 ```bash
 data "yandex_compute_image" "ubuntu" {
   family = "ubuntu-2004-lts"
@@ -101,7 +101,7 @@ resource "yandex_compute_instance" "count" {
 
 }
 ```
-Создал 2 разных по cpu/ram/disk ВМ используя мета-аргумент for_each loop и используя переменную типа list(object({ vm_name=string, cpu=number, ram=number, disk=number }))
+* Создал 2 разных по cpu/ram/disk ВМ используя мета-аргумент for_each loop и используя переменную типа list(object({ vm_name=string, cpu=number, ram=number, disk=number })) через файл for_each-vm.tf
 
 ```bash
 resource "yandex_compute_instance" "for-each" {
@@ -148,8 +148,48 @@ resource "yandex_compute_instance" "for-each" {
 2. Создайте в том же файле **одиночную**(использовать count или for_each запрещено из-за задания №4) ВМ c именем "storage"  . Используйте блок **dynamic secondary_disk{..}** и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
 
 <details><summary>Ответ:</summary>
-	
+*Создал файл disk_vm.tf	
 ```bash
+resource "yandex_compute_disk" "disk" {
+  count = 3
+  name = "disk-${count.index + 1}"
+
+  type     = "network-hdd"
+  size = 1
+}
+
+resource "yandex_compute_instance" "disk-vm" {
+  name = "storage"
+
+  platform_id = "standard-v1"
+  resources {
+    cores         = 2
+    memory        = 1
+    core_fraction = 5
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  dynamic "secondary_disk" {
+    for_each = yandex_compute_disk.disk
+    content {
+      disk_id = yandex_compute_disk.disk[secondary_disk.key].id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+  }
+  metadata = {
+    serial-port-enable = 1
+    ssh-keys           = join(":", ["ubuntu", file("~/.ssh/id_ed25519.pub")])
+  }
+}
 
 ```
 </details>
