@@ -148,6 +148,7 @@ resource "yandex_compute_instance" "for-each" {
 2. Создайте в том же файле **одиночную**(использовать count или for_each запрещено из-за задания №4) ВМ c именем "storage"  . Используйте блок **dynamic secondary_disk{..}** и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
 
 <details><summary>Ответ:</summary>
+	
 ```bash
 
 ```
@@ -168,6 +169,7 @@ resource "yandex_compute_instance" "for-each" {
 **Удалите все созданные ресурсы**.
 
 <details><summary>Ответ:</summary>
+	
 ```bash
 
 ```
