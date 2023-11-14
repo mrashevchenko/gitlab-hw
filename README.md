@@ -77,7 +77,7 @@ module "vpc_dev" {
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b029123e-a3e5-479b-997d-8adfeb25dc3f)
 
 
-*Сгенерируемая документация:
+*Сгенерированная документация:
 https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/vpc/README.md
 https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/README.md  
 
