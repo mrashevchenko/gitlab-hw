@@ -81,7 +81,7 @@ module "vpc_dev" {
 
 
 Сгенерированная документация:
-*[README.mdl](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/vpc/README.md)
+* [README.md](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/vpc/README.md)
 
 </details>
 
