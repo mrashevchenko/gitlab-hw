@@ -244,6 +244,34 @@ module.test-vm.yandex_compute_instance.vm[0]
 module.vpc_dev.yandex_vpc_network.vpc
 module.vpc_dev.yandex_vpc_subnet.subnet
 
+
+
+
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform plan
+data.template_file.cloudinit: Reading...
+data.template_file.cloudinit: Read complete after 0s [id=364b1e22e82af0eec2e853b1e8ce83e223b5a4f288e9badfad34c0b3105f49e8]
+module.test-vm.data.yandex_compute_image.my_image: Reading...
+module.vpc_dev.yandex_vpc_network.vpc: Refreshing state... [id=enpie7iumfj9nui1am1l]
+module.test-vm.data.yandex_compute_image.my_image: Read complete after 0s [id=fd853sqaosrb2anl1uve]
+module.vpc_dev.yandex_vpc_subnet.subnet: Refreshing state... [id=e9b0hhf6nm59hs81cc7i]
+module.test-vm.yandex_compute_instance.vm[0]: Refreshing state... [id=fhmcj1jrm4o8c23vn5em]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are
+needed.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+╵
+root@netology:/opt/terraform/ter-homeworks/04/demo1# 
+
 ```
 
 </details>
