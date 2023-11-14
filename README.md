@@ -13,11 +13,40 @@
 
 <details><summary>Ответ:</summary>
 	
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/eac0e9a9-5677-4bd1-8876-2f8c13f87816)
 
+* Скачал готовый код
+* Файл  ```cloud-init.yml ```
 ```bash
-
+#cloud-config
+users:
+  - name: ubuntu
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ${ssh_public_key}
+package_update: true
+package_upgrade: false
+packages:
+  - vim
+  - nginx
+runcmd:
+- ufw allow 22
+- echo "y" | ufw enable
 ```
 
+*Передал ssh-ключ в файле ```main.tf```
+
+```bash
+data "template_file" "cloudinit" {
+  template = file("./cloud-init.yml")
+  vars = {
+    ssh_public_key = file("~/.ssh/id_ed25519.pub")
+  }
+}
+
+```
 </details>
 
 ------
