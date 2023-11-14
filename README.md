@@ -24,16 +24,13 @@ users:
     groups: sudo
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh-authorized-keys:
-      - ${ssh_public_key}
+    ssh_authorized_keys:
+      - ${ssh-authorized-keys}
 package_update: true
 package_upgrade: false
 packages:
-  - vim
-  - nginx
-runcmd:
-- ufw allow 22
-- echo "y" | ufw enable
+ - vim
+ - nginx
 ```
 
 *Передал ssh-ключ в файле ```main.tf```
