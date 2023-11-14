@@ -1,33 +1,5 @@
 # Домашнее задание к занятию `«Управляющие конструкции в коде Terraform»` - `Rashevchenko Mikhail`
 
-### Цели задания
-
-1. Отработать основные принципы и методы работы с управляющими конструкциями Terraform.
-2. Освоить работу с шаблонизатором Terraform (Interpolation Syntax).
-
-------
-
-### Чек-лист готовности к домашнему заданию
-
-1. Зарегистрирован аккаунт в Yandex Cloud. Использован промокод на грант.
-2. Установлен инструмент Yandex CLI.
-3. Доступен исходный код для выполнения задания в директории [**03/src**](https://github.com/netology-code/ter-homeworks/tree/main/03/src).
-4. Любые ВМ, использованные при выполнении задания, должны быть прерываемыми, для экономии средств.
-
-------
-
-### Инструменты и дополнительные материалы, которые пригодятся для выполнения задания
-
-1. [Консоль управления Yandex Cloud](https://console.cloud.yandex.ru/folders/<cloud_id>/vpc/security-groups).
-2. [Группы безопасности](https://cloud.yandex.ru/docs/vpc/concepts/security-groups?from=int-console-help-center-or-nav).
-3. [Datasource compute disk](https://terraform-eap.website.yandexcloud.net/docs/providers/yandex/d/datasource_compute_disk.html).
-
-------
-### Внимание!! Обязательно предоставляем на проверку получившийся код в виде ссылки на ваш github-репозиторий!
-Убедитесь что ваша версия **Terraform** =1.5.5 (версия 1.6 может вызывать проблемы с Яндекс провайдером)
-Теперь пишем красивый код, хардкод значения не допустимы!
-------
-
 ### Задание 1
 
 1. Изучите проект.
@@ -62,7 +34,7 @@
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/4f18029a-f4b7-47a9-824a-1067971d0756)
 
 
-* Создал две ВМ с помощью мета-аргумент count loop через файл count-vm.tf
+* Создал две ВМ с помощью мета-аргумент ```count loop``` через файл count-vm.tf
 ```bash
 data "yandex_compute_image" "ubuntu" {
   family = "ubuntu-2004-lts"
@@ -98,10 +70,9 @@ resource "yandex_compute_instance" "count" {
     serial-port-enable = 1
     ssh-keys           = join(":", ["ubuntu", file("~/.ssh/id_ed25519.pub")])
   }
-
 }
 ```
-* Создал 2 разных по cpu/ram/disk ВМ используя мета-аргумент for_each loop и используя переменную типа list(object({ vm_name=string, cpu=number, ram=number, disk=number })) через файл for_each-vm.tf
+* Создал 2 разных по cpu/ram/disk ВМ используя мета-аргумент for_each loop и используя переменную типа ```list(object({ vm_name=string, cpu=number, ram=number, disk=number }))``` через файл for_each-vm.tf
 
 ```bash
 resource "yandex_compute_instance" "for-each" {
@@ -152,46 +123,136 @@ resource "yandex_compute_instance" "for-each" {
 * Создал файл disk_vm.tf	
 	
 ```bash
-resource "yandex_compute_disk" "disk" {
-  count = 3
-  name = "disk-${count.index + 1}"
+variable "storage_secondary_disk" {
+  type = list(object({
+    for_storage = object({
+      type       = string
+      size       = number
+      count      = number
+      block_size = number
+      name = string
+    })
+  }))
 
-  type     = "network-hdd"
-  size = 1
+  default = [
+    {
+      for_storage = {
+        type       = "network-hdd"
+        size       = 1
+        count      = 3
+        block_size = 4096
+        name = "disk"
+      }
+    }
+  ]
 }
 
-resource "yandex_compute_instance" "disk-vm" {
-  name = "storage"
+resource "yandex_compute_disk" "disks" {
+  name  = "${var.storage_secondary_disk[0].for_storage.name}-${count.index+1}"
+  type  = var.storage_secondary_disk[0].for_storage.type
+  size  = var.storage_secondary_disk[0].for_storage.size
+  count = var.storage_secondary_disk[0].for_storage.count
+  block_size  = var.storage_secondary_disk[0].for_storage.block_size
+}
+variable "yandex_compute_instance_storage" {
+  type = object({
+    storage_resources = object({
+      cores        = number
+      memory       = number
+      core_fraction = number
+      name         = string
+      zone         = string
+    })
+  })
 
-  platform_id = "standard-v1"
-  resources {
-    cores         = 2
-    memory        = 1
-    core_fraction = 5
+  default = {
+    storage_resources = {
+      cores        = 2
+      memory       = 2
+      core_fraction = 5
+      name         = "storage"
+      zone         = "ru-central1-a"
+    }
   }
+}
+
+variable "boot_disk_storage" {
+  type = object({
+    size = number
+    type = string
+  })
+  default = {
+    size = 5
+    type = "network-hdd"
+  }
+}
+
+
+resource "yandex_compute_instance" "storage" {
+  name = var.yandex_compute_instance_storage.storage_resources.name
+  zone = var.yandex_compute_instance_storage.storage_resources.zone
+
+  resources {
+    cores  = var.yandex_compute_instance_storage.storage_resources.cores
+    memory = var.yandex_compute_instance_storage.storage_resources.memory
+    core_fraction = var.yandex_compute_instance_storage.storage_resources.core_fraction
+  }
+
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu.image_id
+      image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
+      type     = var.boot_disk_storage.type
+      size     = var.boot_disk_storage.size
     }
   }
-  dynamic "secondary_disk" {
-    for_each = yandex_compute_disk.disk
-    content {
-      disk_id = yandex_compute_disk.disk[secondary_disk.key].id
+      metadata = {
+      ssh-keys           = "ubuntu:${local.ssh-keys}"
+      serial-port-enable = "1"
     }
-  }
-  scheduling_policy {
-    preemptible = true
-  }
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
     nat       = true
+    security_group_ids = [
+      yandex_vpc_security_group.example.id
+    ]
   }
-  metadata = {
-    serial-port-enable = 1
-    ssh-keys           = join(":", ["ubuntu", file("~/.ssh/id_ed25519.pub")])
+  dynamic "secondary_disk" {
+    for_each = yandex_compute_disk.disks.*.id
+    content {
+      disk_id = secondary_disk.value
+  }
   }
 }
+resource "null_resource" "web_hosts_provision" {
+  #Ждем создания инстанса
+  depends_on = [yandex_compute_instance.storage]
+
+provisioner "local-exec" {
+    command = "eval `ssh-agent -s`"
+}
+provisioner "local-exec" {
+    command = "ssh-add - | cat ~/.ssh/id_ed25519"
+  }
+
+  #Костыль!!! Даем ВМ 60 сек на первый запуск. Лучше выполнить это через wait_for port 22 на стороне ansible
+# В случае использования cloud-init может потребоваться еще больше времени
+ provisioner "local-exec" {
+    command = "sleep 120"
+  }
+
+#Запуск ansible-playbook
+  provisioner "local-exec" {
+    command  = "export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ${abspath(path.module)}/hosts.cfg ${abspath(path.module)}/test.yml"
+    on_failure = continue #Продолжить выполнение terraform pipeline в случае ошибок
+    environment = { ANSIBLE_HOST_KEY_CHECKING = "False" }
+    #срабатывание триггера при изменении переменных
+  }
+    triggers = {
+      always_run         = "${timestamp()}" #всегда т.к. дата и время постоянно изменяются
+      playbook_src_hash  = file("${abspath(path.module)}/test.yml") # при изменении содержимого playbook файла
+      ssh_public_key     = local.ssh-keys # при изменении переменной
+    }
+  }
 
 ```
 </details>
@@ -205,14 +266,36 @@ resource "yandex_compute_instance" "disk-vm" {
 Готовый код возьмите из демонстрации к лекции [**demonstration2**](https://github.com/netology-code/ter-homeworks/tree/main/03/demonstration2).
 Передайте в него в качестве переменных группы виртуальных машин из задания 2.1, 2.2 и 3.2, т. е. 5 ВМ.
 2. Инвентарь должен содержать 3 группы [webservers], [databases], [storage] и быть динамическим, т. е. обработать как группу из 2-х ВМ, так и 999 ВМ.
-4. Выполните код. Приложите скриншот получившегося файла. 
+3. Выполните код. Приложите скриншот получившегося файла. 
 
 Для общего зачёта создайте в вашем GitHub-репозитории новую ветку terraform-03. Закоммитьте в эту ветку свой финальный код проекта, пришлите ссылку на коммит.   
 **Удалите все созданные ресурсы**.
 
 <details><summary>Ответ:</summary>
-	
+
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/2e11863d-6005-4b10-bebe-b0acfcf727c5)
+
+ 
 ```bash
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.module}/hosts.tftpl",
+   {webservers =  yandex_compute_instance.web
+    databases = yandex_compute_instance.for_each
+    storage = [yandex_compute_instance.storage]}
+  )
+  filename = "${abspath(path.module)}/hosts.cfg"
+}
+
+```
+```bash
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.module}/hosts.tftpl",
+   {webservers =  yandex_compute_instance.web
+    databases = yandex_compute_instance.for_each
+    storage = [yandex_compute_instance.storage]}
+  )
+  filename = "${abspath(path.module)}/hosts.cfg"
+}
 
 ```
 </details>
