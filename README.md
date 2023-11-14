@@ -74,12 +74,12 @@ module "vpc_dev" {
 <details><summary>Ответ:</summary>
 
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/322cd532-957c-4789-a8ea-9cb3873e753b)
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b029123e-a3e5-479b-997d-8adfeb25dc3f)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/dba1613a-194a-4da6-ad59-f8bcb979de1e)
+
 
 
 Сгенерированная документация:
 * https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/vpc/README.md
-* https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/README.md  
 
 </details>
 
