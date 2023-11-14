@@ -100,6 +100,9 @@ module "vpc_dev" {
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/3caad9be-9053-46df-967f-f9316ffbdd05)
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b1ecf140-8741-47ae-9fc1-774d6c371150)
 
+* ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/fc8202f8-2f60-4a2b-96e8-447ad4947a1a)
+
+
 ```bash
 root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform state list 
 data.template_file.cloudinit
