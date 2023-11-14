@@ -16,7 +16,7 @@
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/eac0e9a9-5677-4bd1-8876-2f8c13f87816)
 
 * Скачал готовый код
-* Файл  ```cloud-init.yml ```
+* Файл [cloud-init.yml](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/cloud-init.yml)
 ```bash
 #cloud-config
 users:
@@ -75,11 +75,12 @@ module "vpc_dev" {
 
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/322cd532-957c-4789-a8ea-9cb3873e753b)
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/dba1613a-194a-4da6-ad59-f8bcb979de1e)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/be5e6376-43c0-4560-90d5-bf0a552fd898)
 
 
 
 Сгенерированная документация:
-* https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/vpc/README.md
+*[README.mdl](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/vpc/README.md)
 
 </details>
 
