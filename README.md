@@ -92,9 +92,154 @@ module "vpc_dev" {
 4. Импортируйте всё обратно. Проверьте terraform plan. Изменений быть не должно.
 Приложите список выполненных команд и скриншоты процессы.
 <details><summary>Ответ:</summary>
-	
+
+ ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b6a3eea3-cc67-44db-9f4b-085934a828ff)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/2de0639a-9f0b-431f-8a85-8e54f4bd4a13)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/06e286bc-2fff-44ed-b405-a99f0b4a4840)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/704138f2-206d-4a03-8f48-cd42897e5db9)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/3caad9be-9053-46df-967f-f9316ffbdd05)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b1ecf140-8741-47ae-9fc1-774d6c371150)
 
 ```bash
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform state list 
+data.template_file.cloudinit
+module.test-vm.data.yandex_compute_image.my_image
+module.test-vm.yandex_compute_instance.vm[0]
+module.vpc_dev.yandex_vpc_network.vpc
+module.vpc_dev.yandex_vpc_subnet.subnet
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform state rm module.vpc_dev
+Removed module.vpc_dev.yandex_vpc_network.vpc
+Removed module.vpc_dev.yandex_vpc_subnet.subnet
+Successfully removed 2 resource instance(s).
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform state rm module.test-vm
+Removed module.test-vm.data.yandex_compute_image.my_image
+Removed module.test-vm.yandex_compute_instance.vm[0]
+Successfully removed 2 resource instance(s).
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform state list
+data.template_file.cloudinit
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform import module.vpc_dev.yandex_vpc_subnet.subnet e9b0hhf6nm59hs81cc7i
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+╵
+
+data.template_file.cloudinit: Reading...
+data.template_file.cloudinit: Read complete after 0s [id=364b1e22e82af0eec2e853b1e8ce83e223b5a4f288e9badfad34c0b3105f49e8]
+module.test-vm.data.yandex_compute_image.my_image: Reading...
+module.vpc_dev.yandex_vpc_subnet.subnet: Importing from ID "e9b0hhf6nm59hs81cc7i"...
+module.vpc_dev.yandex_vpc_subnet.subnet: Import prepared!
+  Prepared yandex_vpc_subnet for import
+module.vpc_dev.yandex_vpc_subnet.subnet: Refreshing state... [id=e9b0hhf6nm59hs81cc7i]
+module.test-vm.data.yandex_compute_image.my_image: Read complete after 1s [id=fd853sqaosrb2anl1uve]
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
+
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+│ 
+│ (and one more similar warning elsewhere)
+╵
+
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform import module.vpc_dev.yandex_vpc_network.vpc enpie7iumfj9nui1am1l
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+╵
+
+data.template_file.cloudinit: Reading...
+data.template_file.cloudinit: Read complete after 0s [id=364b1e22e82af0eec2e853b1e8ce83e223b5a4f288e9badfad34c0b3105f49e8]
+module.vpc_dev.yandex_vpc_network.vpc: Importing from ID "enpie7iumfj9nui1am1l"...
+module.vpc_dev.yandex_vpc_network.vpc: Import prepared!
+  Prepared yandex_vpc_network for import
+module.vpc_dev.yandex_vpc_network.vpc: Refreshing state... [id=enpie7iumfj9nui1am1l]
+module.test-vm.data.yandex_compute_image.my_image: Reading...
+module.test-vm.data.yandex_compute_image.my_image: Read complete after 0s [id=fd853sqaosrb2anl1uve]
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
+
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+│ 
+│ (and one more similar warning elsewhere)
+╵
+
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform import module.test-vm.yandex_compute_instance.vm[0] fhmcj1jrm4o8c23vn5em
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+╵
+
+data.template_file.cloudinit: Reading...
+data.template_file.cloudinit: Read complete after 0s [id=364b1e22e82af0eec2e853b1e8ce83e223b5a4f288e9badfad34c0b3105f49e8]
+module.test-vm.data.yandex_compute_image.my_image: Reading...
+module.test-vm.data.yandex_compute_image.my_image: Read complete after 0s [id=fd853sqaosrb2anl1uve]
+module.test-vm.yandex_compute_instance.vm[0]: Importing from ID "fhmcj1jrm4o8c23vn5em"...
+module.test-vm.yandex_compute_instance.vm[0]: Import prepared!
+  Prepared yandex_compute_instance for import
+module.test-vm.yandex_compute_instance.vm[0]: Refreshing state... [id=fhmcj1jrm4o8c23vn5em]
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
+
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on .terraform/modules/test-vm/providers.tf line 2, in provider "template":
+│    2:   version = "2.2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now
+│ deprecated and will be removed in a future version of Terraform. To silence this warning, move the provider version
+│ constraint into the required_providers block.
+│ 
+│ (and one more similar warning elsewhere)
+╵
+
+root@netology:/opt/terraform/ter-homeworks/04/demo1# terraform state list 
+data.template_file.cloudinit
+module.test-vm.data.yandex_compute_image.my_image
+module.test-vm.yandex_compute_instance.vm[0]
+module.vpc_dev.yandex_vpc_network.vpc
+module.vpc_dev.yandex_vpc_subnet.subnet
 
 ```
 
