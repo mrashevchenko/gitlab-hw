@@ -16,7 +16,7 @@
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/eac0e9a9-5677-4bd1-8876-2f8c13f87816)
 
 * Скачал готовый код
-* Файл [cloud-init.yml](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/cloud-init.yml)
+* Добавил в [cloud-init.yml](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/cloud-init.yml) установку nginx
 ```bash
 #cloud-config
 users:
