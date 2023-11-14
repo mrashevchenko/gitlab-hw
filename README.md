@@ -33,13 +33,14 @@ packages:
  - nginx
 ```
 
-*Передал ssh-ключ в файле ```main.tf```
+*Передал ssh-ключ в файле [main.tf](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/main.tf) c помощью [variables.tf](https://github.com/mrashevchenko/gitlab-hw/blob/hw07-04/src/variables.tf)
 
 ```bash
+#Пример передачи cloud-config в ВМ для демонстрации №3
 data "template_file" "cloudinit" {
   template = file("./cloud-init.yml")
-  vars = {
-    ssh_public_key = file("~/.ssh/id_ed25519.pub")
+  vars     = {
+    ssh-authorized-keys = file(var.ssh-authorized-keys[0])
   }
 }
 
