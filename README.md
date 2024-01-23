@@ -15,8 +15,6 @@
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/b840a9ea-a43b-4133-952b-21d8f1eb9019)
 
 3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/10fe9cec-f0da-443a-8aef-98b93e228f89)
-
 4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/9e636b39-0252-4ef8-a805-02fa3ba08271)
 
