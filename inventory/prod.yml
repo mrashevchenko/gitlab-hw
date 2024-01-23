@@ -1,0 +1,25 @@
+---
+
+  - name: Print os facts
+    hosts: all
+    tasks:
+      - name: Print OS
+        debug:
+          msg: "{{ ansible_distribution }}"
+      - name: Print fact
+        debug:
+          msg: "{{ some_fact }}"
+root@netology:~/ansible/08-ansible-01-base/playbook# cat inventory/prod.yml 
+---
+  el:
+    hosts:
+      centos7:
+        ansible_connection: docker
+  deb:
+    hosts:
+      ubuntu:
+        ansible_connection: docker
+  local:
+    hosts:
+      localhost:
+        ansible_connection: local
