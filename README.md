@@ -14,9 +14,17 @@
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать дистрибутив нужной версии, выполнить распаковку в выбранную директорию, установить vector.
 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/2b93aa16-bbc2-4ebe-914e-45be2a50d7a2)
+
 6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/cbcafe37-cf09-4585-89cb-562375487d59)
+
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/c8d9369d-3684-4cf9-8b1c-18d203539e8c)
+
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/0dd69d65-aadd-432e-8cf0-a7bec0414c9e)
+
 9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги. Пример качественной документации ansible playbook по [ссылке](https://github.com/opensearch-project/ansible-playbook). Так же приложите скриншоты выполнения заданий №5-8
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
