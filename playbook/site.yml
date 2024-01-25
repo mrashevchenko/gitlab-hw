@@ -58,4 +58,44 @@
       register: create_db
       failed_when: create_db.rc != 0 and create_db.rc !=82
       changed_when: create_db.rc == 0
-      
+
+- name: Install lighthouse
+  hosts: lighthouse
+  become: true
+  become_user: root
+  handlers:
+    - name: nginx systemd
+      systemd:
+        name: nginx
+        enabled: yes
+        state: started
+  tasks:
+    - name: Install EPEL Repo
+      yum:
+        name=epel-release
+        state=present
+
+    - name: Install nginx
+      yum:
+        name=nginx
+      notify:
+        - nginx systemd
+
+    - name: Install git
+      yum:
+        name=git
+
+    - name: write config with jinja2
+      ansible.builtin.template:
+         src: ./group_vars/nginx.conf.j2
+         mode: 0644
+         dest: /etc/nginx/nginx.conf
+         owner: nginx
+         group: nginx
+
+    - name: Clone repo
+      ansible.builtin.git:
+         repo: https://github.com/VKCOM/lighthouse.git
+         dest: /usr/share/nginx/index
+      notify:
+        - nginx systemd
