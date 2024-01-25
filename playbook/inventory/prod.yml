@@ -9,3 +9,8 @@ vector:
     vector-01:
       ansible_user: mrashe
       ansible_host: 158.160.107.228
+lighthouse:
+  hosts:
+    ligthhouse-01:
+      ansible_user: mrashe
+      ansible_host: 84.201.130.220
