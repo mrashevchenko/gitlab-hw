@@ -29,7 +29,7 @@
 - ([README.md](https://github.com/mrashevchenko/gitlab-hw/blob/hw08-02/playbook/README.md))
 
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
-- ([playbook](https://github.com/mrashevchenko/gitlab-hw/blob/hw08-02/playbook/site.ym))
+- ([TAG](https://github.com/mrashevchenko/gitlab-hw/releases/tag/08-ansible-02-playbook))
   
 ---
 
