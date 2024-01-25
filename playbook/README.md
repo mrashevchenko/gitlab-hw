@@ -24,8 +24,7 @@ Playbook разворачивает на заданных хостах прил�
 
 ```/group_vars/clickhouse/vars.yml``` -  версия clickhous         
 ```/group_vars/vector/vars.yml``` -   версия vector 
-
-```/group_vars/```   
+  
 ## Start   
 
 Для запуска playbook нужно выполнить команду    
