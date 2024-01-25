@@ -17,10 +17,9 @@
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
 playbook по [ссылке](https://github.com/opensearch-project/ansible-playbook).
-- ([playbook](https://github.com/mrashevchenko/gitlab-hw/blob/hw08-03/playbook/site.ym))
-10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
-
 - ([README.md](https://github.com/mrashevchenko/gitlab-hw/blob/hw08-03/playbook/README.md))
+10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+- ([TAG](https://github.com/mrashevchenko/gitlab-hw/releases/tag/08-ansible-02-playbook))
 ---
 
 ### Как оформить решение задания
