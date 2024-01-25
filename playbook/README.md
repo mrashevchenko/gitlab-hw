@@ -1,6 +1,6 @@
 ## Playbook
 
-Playbook разворачивает на заданном хосте приложения:
+Playbook разворачивает на заданных хостах приложения:
 - сlickhouse-client    
 - clickhouse-server   
 - clickhouse-common   
