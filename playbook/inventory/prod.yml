@@ -1,0 +1,11 @@
+---
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_user: mrashe
+      ansible_host: 51.250.0.122
+vector:
+  hosts:
+    vector-01:
+      ansible_user: mrashe
+      ansible_host: 158.160.107.228
