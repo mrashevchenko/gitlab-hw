@@ -234,16 +234,173 @@ INFO     Pruning extra files from scenario ephemeral directory
 </details>
 
 2. Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/dc54a83e-b17f-4ff3-9f40-f83ebcb0c4df)
-
 3. Добавьте несколько разных дистрибутивов (oraclelinux:8, ubuntu:latest) для инстансов и протестируйте роль, исправьте найденные ошибки, если они есть.
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/a7fd1e19-4019-4d80-b002-2bada933b3e1)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/0975be38-bc84-4bb2-9784-ba211dc92751)
 
 4. Добавьте несколько assert в verify.yml-файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска и др.).
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/a6b4b506-1b8a-4bd1-926f-d5fe773c65cc)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/cdde1e12-2a34-4807-8452-58fd8978a82e)
 
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
-5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/3138e928-db3f-4e37-8a4c-f8a6ed78492d)
+
+
+<details><summary>Код всей команды </summary>
+
+```
+root@netology:~/mnt-homeworks/08-ansible-02-playbook/playbook/roles/vector-role# molecule test
+WARNING  Driver docker does not provide a schema.
+INFO     default scenario test matrix: dependency, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+INFO     Performing prerun with role_name_check=0...
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running default > destroy
+INFO     Sanity checks: 'docker'
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=ubuntu)
+changed: [localhost] => (item=aragast)
+changed: [localhost] => (item=centos)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+ok: [localhost] => (item=ubuntu)
+ok: [localhost] => (item=aragast)
+ok: [localhost] => (item=centos)
+
+TASK [Delete docker networks(s)] ***********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Running default > syntax
+
+playbook: /root/mnt-homeworks/08-ansible-02-playbook/playbook/roles/vector-role/molecule/default/converge.yml
+INFO     Running default > create
+
+PLAY [Create] ******************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Log into a Docker registry] **********************************************
+skipping: [localhost] => (item=None) 
+skipping: [localhost] => (item=None) 
+skipping: [localhost] => (item=None) 
+skipping: [localhost]
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item={'image': 'ubuntu:latest', 'name': 'ubuntu', 'pre_build_image': True})
+ok: [localhost] => (item={'image': 'aragast/netology:latest', 'name': 'aragast', 'pre_build_image': True})
+ok: [localhost] => (item={'image': 'centos:7', 'name': 'centos', 'pre_build_image': True})
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item={'image': 'ubuntu:latest', 'name': 'ubuntu', 'pre_build_image': True}) 
+skipping: [localhost] => (item={'image': 'aragast/netology:latest', 'name': 'aragast', 'pre_build_image': True}) 
+skipping: [localhost] => (item={'image': 'centos:7', 'name': 'centos', 'pre_build_image': True}) 
+skipping: [localhost]
+
+TASK [Synchronization the context] *********************************************
+skipping: [localhost] => (item={'image': 'ubuntu:latest', 'name': 'ubuntu', 'pre_build_image': True}) 
+skipping: [localhost] => (item={'image': 'aragast/netology:latest', 'name': 'aragast', 'pre_build_image': True}) 
+skipping: [localhost] => (item={'image': 'centos:7', 'name': 'centos', 'pre_build_image': True}) 
+skipping: [localhost]
+
+TASK [Discover local Docker images] ********************************************
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'not item.pre_build_image | default(false)', 'item': {'image': 'ubuntu:latest', 'name': 'ubuntu', 'pre_build_image': True}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'not item.pre_build_image | default(false)', 'item': {'image': 'aragast/netology:latest', 'name': 'aragast', 'pre_build_image': True}, 'ansible_loop_var': 'item', 'i': 1, 'ansible_index_var': 'i'})
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'not item.pre_build_image | default(false)', 'item': {'image': 'centos:7', 'name': 'centos', 'pre_build_image': True}, 'ansible_loop_var': 'item', 'i': 2, 'ansible_index_var': 'i'})
+
+TASK [Build an Ansible compatible image (new)] *********************************
+skipping: [localhost] => (item=molecule_local/ubuntu:latest) 
+skipping: [localhost] => (item=molecule_local/aragast/netology:latest) 
+skipping: [localhost] => (item=molecule_local/centos:7) 
+skipping: [localhost]
+
+TASK [Create docker network(s)] ************************************************
+skipping: [localhost]
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item={'image': 'ubuntu:latest', 'name': 'ubuntu', 'pre_build_image': True})
+ok: [localhost] => (item={'image': 'aragast/netology:latest', 'name': 'aragast', 'pre_build_image': True})
+ok: [localhost] => (item={'image': 'centos:7', 'name': 'centos', 'pre_build_image': True})
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=ubuntu)
+changed: [localhost] => (item=aragast)
+changed: [localhost] => (item=centos)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j339745106314.2436', 'results_file': '/root/.ansible_async/j339745106314.2436', 'changed': True, 'item': {'image': 'ubuntu:latest', 'name': 'ubuntu', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j469298603639.2462', 'results_file': '/root/.ansible_async/j469298603639.2462', 'changed': True, 'item': {'image': 'aragast/netology:latest', 'name': 'aragast', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j414630541931.2548', 'results_file': '/root/.ansible_async/j414630541931.2548', 'changed': True, 'item': {'image': 'centos:7', 'name': 'centos', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=2    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+
+INFO     Running default > prepare
+WARNING  Skipping, prepare playbook not configured.
+INFO     Running default > converge
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [ubuntu]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "/bin/sh: 1: /usr/bin/python: not found\n", "module_stdout": "", "msg": "The module failed to execute correctly, you probably need to set the interpreter.\nSee stdout/stderr for the exact error", "rc": 127}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+ok: [aragast]
+ok: [centos]
+
+TASK [Include vector-role] *****************************************************
+
+PLAY RECAP *********************************************************************
+aragast                    : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+centos                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu                     : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+CRITICAL Ansible return code was 2, command was: ansible-playbook --inventory /root/.cache/molecule/vector-role/default/inventory --skip-tags molecule-notest,notest /root/mnt-homeworks/08-ansible-02-playbook/playbook/roles/vector-role/molecule/default/converge.yml
+WARNING  An error occurred during the test sequence action: 'converge'. Cleaning up.
+INFO     Running default > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running default > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=ubuntu)
+changed: [localhost] => (item=aragast)
+changed: [localhost] => (item=centos)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+changed: [localhost] => (item=ubuntu)
+changed: [localhost] => (item=aragast)
+changed: [localhost] => (item=centos)
+
+TASK [Delete docker networks(s)] ***********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
+root@netology:~/mnt-homeworks/08-ansible-02-playbook/playbook/roles/vector-role#
+```
+</details>
+
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/2da92817-0568-484c-9659-8b1e09b0ddad)
+
+5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.   
+   
+- [TAG]( https://github.com/mrashevchenko/ansible-vector/releases/tag/1.1.0)   
+   
 
 ### Tox
 
