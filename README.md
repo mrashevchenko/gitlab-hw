@@ -37,7 +37,6 @@
 1. Перейдите в Scrum, запланируйте новый спринт, состоящий из задач эпика и одного бага, стартуйте спринт, проведите задачи до состояния Closed. Закройте спринт.
 2. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
 
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/a6ecd754-5b97-46b3-9f6e-0f3cf765eaa9)
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/006a9515-ebe6-4c60-b579-255e4d397770)
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/7412c1b2-4266-48da-a36b-bb0d3a6b0e78)
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/1c2ad589-5154-491b-9fce-4aeabce88df1)
