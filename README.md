@@ -46,7 +46,7 @@
 
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/73e01c5f-9728-4fa0-988c-7f408778c23b)   
 
-- [maven-metadat](maven-metadata.xml)
+- [maven-metadate](maven-metadata.xml)
 
 ### Знакомство с Maven
 
@@ -64,6 +64,8 @@
 2. Запустите команду `mvn package` в директории с `pom.xml`, ожидайте успешного окончания.
 3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.
 4. В ответе пришлите исправленный файл `pom.xml`.
+
+- [pom](pom.xml)
 
 ---
 
