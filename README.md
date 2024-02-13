@@ -1,54 +1,67 @@
-# Домашнее задание к занятию "``" 
-# Домашнее задание к занятию 7 «Жизненный цикл ПО» - `Rashevchenko Mikhail`
+# Домашнее задание к занятию 9 «Процессы CI/CD» - `Rashevchenko Mikhail`
 
 ## Подготовка к выполнению
 
-1. Получить бесплатную версию Jira - https://www.atlassian.com/ru/software/jira/work-management/free (скопируйте ссылку в адресную строку). Вы можете воспользоваться любым(в том числе бесплатным vpn сервисом) если сайт у вас недоступен. Кроме того вы можете скачать [docker образ](https://hub.docker.com/r/atlassian/jira-software/#) и запустить на своем хосте self-managed версию jira.
-2. Настроить её для своей команды разработки.
-3. Создать доски Kanban и Scrum.
-4. [Дополнительные инструкции от разработчика Jira](https://support.atlassian.com/jira-cloud-administration/docs/import-and-export-issue-workflows/).
+1. Создайте два VM в Yandex Cloud с параметрами: 2CPU 4RAM Centos7 (остальное по минимальным требованиям).
+2. Пропишите в [inventory](./infrastructure/inventory/cicd/hosts.yml) [playbook](./infrastructure/site.yml) созданные хосты.
+3. Добавьте в [files](./infrastructure/files/) файл со своим публичным ключом (id_rsa.pub). Если ключ называется иначе — найдите таску в плейбуке, которая использует id_rsa.pub имя, и исправьте на своё.
+4. Запустите playbook, ожидайте успешного завершения.
+5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
+6. Зайдите под admin\admin, поменяйте пароль на свой.
+7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
+8. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
 
-## Основная часть
+## Знакомоство с SonarQube
 
-Необходимо создать собственные workflow для двух типов задач: bug и остальные типы задач. Задачи типа bug должны проходить жизненный цикл:
+### Основная часть
 
-1. Open -> On reproduce.
-2. On reproduce -> Open, Done reproduce.
-3. Done reproduce -> On fix.
-4. On fix -> On reproduce, Done fix.
-5. Done fix -> On test.
-6. On test -> On fix, Done.
-7. Done -> Closed, Open.
+1. Создайте новый проект, название произвольное.
+2. Скачайте пакет sonar-scanner, который вам предлагает скачать SonarQube.
+3. Сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
+4. Проверьте `sonar-scanner --version`.
+5. Запустите анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`.
+6. Посмотрите результат в интерфейсе.
+7. Исправьте ошибки, которые он выявил, включая warnings.
+8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.
+9. Сделайте скриншот успешного прохождения анализа, приложите к решению ДЗ.
 
-Остальные задачи должны проходить по упрощённому workflow:
+## Знакомство с Nexus
 
-1. Open -> On develop.
-2. On develop -> Open, Done develop.
-3. Done develop -> On test.
-4. On test -> On develop, Done.
-5. Done -> Closed, Open.
+### Основная часть
 
-**Что нужно сделать**
+1. В репозиторий `maven-public` загрузите артефакт с GAV-параметрами:
 
-1. Создайте задачу с типом bug, попытайтесь провести его по всему workflow до Done. 
-1. Создайте задачу с типом epic, к ней привяжите несколько задач с типом task, проведите их по всему workflow до Done. 
-1. При проведении обеих задач по статусам используйте kanban. 
-1. Верните задачи в статус Open.
-1. Перейдите в Scrum, запланируйте новый спринт, состоящий из задач эпика и одного бага, стартуйте спринт, проведите задачи до состояния Closed. Закройте спринт.
-2. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
+ *    groupId: netology;
+ *    artifactId: java;
+ *    version: 8_282;
+ *    classifier: distrib;
+ *    type: tar.gz.
+   
+2. В него же загрузите такой же артефакт, но с version: 8_102.
+3. Проверьте, что все файлы загрузились успешно.
+4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
 
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/006a9515-ebe6-4c60-b579-255e4d397770)
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/7412c1b2-4266-48da-a36b-bb0d3a6b0e78)
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/1c2ad589-5154-491b-9fce-4aeabce88df1)
+### Знакомство с Maven
 
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/da09d017-14f6-4df0-918a-0585db221545)
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/a8a9740f-1d64-4b27-b5e6-b0cfaac8a149)
+### Подготовка к выполнению
 
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/9083f432-2942-46e8-943a-d0274ec23887)
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/f0a1efb3-a450-4434-a539-468b6466d506)
+1. Скачайте дистрибутив с [maven](https://maven.apache.org/download.cgi).
+2. Разархивируйте, сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
+3. Удалите из `apache-maven-<version>/conf/settings.xml` упоминание о правиле, отвергающем HTTP- соединение — раздел mirrors —> id: my-repository-http-unblocker.
+4. Проверьте `mvn --version`.
+5. Заберите директорию [mvn](./mvn) с pom.
+
+### Основная часть
+
+1. Поменяйте в `pom.xml` блок с зависимостями под ваш артефакт из первого пункта задания для Nexus (java с версией 8_282).
+2. Запустите команду `mvn package` в директории с `pom.xml`, ожидайте успешного окончания.
+3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.
+4. В ответе пришлите исправленный файл `pom.xml`.
 
 ---
 
 ### Как оформить решение задания
 
 Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+
+---
