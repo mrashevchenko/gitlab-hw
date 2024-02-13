@@ -45,7 +45,8 @@
 4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
 
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/73e01c5f-9728-4fa0-988c-7f408778c23b)   
-- [maven-metadat](maven-metadata.xml)/
+
+- [maven-metadat](maven-metadata.xml)
 
 ### Знакомство с Maven
 
