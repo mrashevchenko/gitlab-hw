@@ -24,6 +24,9 @@
 7. Исправьте ошибки, которые он выявил, включая warnings.
 8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.
 9. Сделайте скриншот успешного прохождения анализа, приложите к решению ДЗ.
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/cab48723-aa01-4888-9d73-c409ca590c84)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/ee914d35-999f-4aab-ac9e-3fffd4129752)
+
 
 ## Знакомство с Nexus
 
