@@ -44,6 +44,9 @@
 3. Проверьте, что все файлы загрузились успешно.
 4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
 
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/73e01c5f-9728-4fa0-988c-7f408778c23b)
+https://github.com/mrashevchenko/gitlab-hw/blob/hw09-03/maven-metadata.xml
+
 ### Знакомство с Maven
 
 ### Подготовка к выполнению
