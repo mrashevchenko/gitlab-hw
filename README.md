@@ -11,6 +11,8 @@
 
 <details><summary>Ответ:</summary>  
 
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/c9582202-5bb6-42ab-917d-a09fb75985f6)
+
 
 </details>
 
