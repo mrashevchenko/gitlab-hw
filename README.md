@@ -35,6 +35,39 @@
 
 <details><summary>Ответ:</summary>  
 
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/4b1a9cfe-b8c7-4897-ae6a-7e4e58909c4c)
+
++ утилизация CPU для nodeexporter (в процентах, 100-idle);
+```
+100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle", instance=~"nodeexporter:9100"}[1m])) * 100)
+```
+
++ CPULA 1/5/15;
+  
+++ A  
+```
+(avg by(instance) (node_load1{instance=~"nodeexporter:9100"}) * 100) / count by(instance) (count by(cpu, instance) (node_cpu_seconds_total{instance=~"nodeexporter:9100"}))
+```
+
+++ B:  
+```
+(avg by(instance) (node_load5{instance=~"nodeexporter:9100"}) * 100) / count by(instance) (count by(cpu, instance) (node_cpu_seconds_total{instance=~"nodeexporter:9100"}))
+```
+
+++ C:  
+```
+(avg by(instance) (node_load15{instance=~"nodeexporter:9100"}) * 100) / count by(instance) (count by(cpu, instance) (node_cpu_seconds_total{instance=~"nodeexporter:9100"}))
+```
+
++ количество свободной оперативной памяти;
+```
+avg by (instance) (100 * ((avg_over_time(node_memory_MemFree_bytes{instance=~"nodeexporter:9100"}[5m]) + avg_over_time(node_memory_Cached_bytes{instance=~"nodeexporter:9100"}[5m]) + avg_over_time(node_memory_Buffers_bytes{instance=~"nodeexporter:9100"}[5m])) / avg_over_time(node_memory_MemTotal_bytes{instance=~"nodeexporter:9100"}[5m])))
+```
+
++ количество места на файловой системе.
+```
+100 - (node_filesystem_avail_bytes{instance=~"nodeexporter:9100",mountpoint="/"} * 100 / node_filesystem_size_bytes{instance=~"nodeexporter:9100",mountpoint="/"})
+```
 
 </details>
 
@@ -45,7 +78,7 @@
 
 <details><summary>Ответ:</summary>  
 
-
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/3d3e0e4b-5229-498f-b289-535f2a35994e)
 
 </details>
 
@@ -56,6 +89,7 @@
 
 <details><summary>Ответ:</summary>  
 
+https://github.com/mrashevchenko/gitlab-hw/blob/hw13-03/Dashboard.json
 
 </details>
 ---
