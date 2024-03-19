@@ -93,10 +93,3 @@ https://github.com/mrashevchenko/gitlab-hw/blob/hw13-03/Dashboard.json
 
 </details>
 
-
-<details><summary>Ответ:</summary>  
-
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/7d04cdfb-07c2-4aad-b55d-f5893b44f7f0)
-
-</details>
-
