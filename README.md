@@ -42,7 +42,7 @@ Filebeat следует сконфигурировать для отправки
 
 <details><summary>Ответ:</summary>  
 
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/d34e9923-d6c0-4874-ae7c-e0a8eaa6a4d5)
+![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/ae209b79-6da4-4730-bdfe-18272686a564)
 
 ![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/387a03df-6f6b-4efc-9fe1-2ae775ac94c9)
 
