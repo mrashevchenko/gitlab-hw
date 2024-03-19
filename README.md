@@ -92,13 +92,7 @@ avg by (instance) (100 * ((avg_over_time(node_memory_MemFree_bytes{instance=~"no
 https://github.com/mrashevchenko/gitlab-hw/blob/hw13-03/Dashboard.json
 
 </details>
----
 
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
-
----
 
 <details><summary>Ответ:</summary>  
 
