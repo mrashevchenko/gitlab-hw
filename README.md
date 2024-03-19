@@ -1,4 +1,4 @@
-![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/22129621-5535-45e1-87ef-9d9842c52de6)![image](https://github.com/mrashevchenko/gitlab-hw/assets/100411467/9bb9a699-6fbb-4d07-994b-a3a911092069)# Домашнее задание к занятию 15 «Система сбора логов Elastic Stack» - `Rashevchenko Mikhail`
+# Домашнее задание к занятию 15 «Система сбора логов Elastic Stack» - `Rashevchenko Mikhail`
 
 ## Дополнительные ссылки
 
